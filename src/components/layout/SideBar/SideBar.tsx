@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import {  Icon, Menu, MenuItem as Item, Sidebar } from 'semantic-ui-react'
+import { Menu, MenuItem as Item, Sidebar } from 'semantic-ui-react'
 import ResearcherCard from './SideBarResearcherCard';
 import { SideBarItems } from './SideBar.items';
 import SideBarItem from './SideBarItem';
+import { Router, Switch } from 'react-router';
+import { createHashHistory, createMemoryHistory, createBrowserHistory } from 'history';
+import { BrowserRouter } from 'react-router-dom';
 
 export const SideBar = () => {
   const [visible, setVisible] = useState(true)
@@ -13,7 +16,7 @@ export const SideBar = () => {
     icon='labeled' 
     inverted 
     vertical 
-    visible 
+    visible={visible}
     width='wide'
     className="bg-dark"
     >
@@ -21,21 +24,9 @@ export const SideBar = () => {
         <ResearcherCard/>
       </Item>
 
-      { SideBarItems.map(item => <SideBarItem item={item}/>)}
-      
-      <Item>
-        <Icon name='detective' />
-        Researchers
-      </Item>
-      <Item as='a'>
-        <Icon name='snapchat ghost' />
-        Anomalies
-      </Item>
-      <Item as='a'>
-        <Icon name='newspaper outline' />
-        Incidents
-      </Item>
+        { SideBarItems.map(item => <SideBarItem item={item}/>)}
 
+      
   </Sidebar>
   )
 }

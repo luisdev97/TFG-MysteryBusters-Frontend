@@ -1,6 +1,7 @@
 import React from 'react';
 import { MenuItem as Item, Icon } from "semantic-ui-react";
 import { SideBarItemType } from './SideBar.items';
+import { NavLink } from 'react-router-dom';
 
 
 function SideBarItem({ item }: SideBarItemProps) {
@@ -8,8 +9,10 @@ function SideBarItem({ item }: SideBarItemProps) {
 
     return (
         <Item>
-            <Icon name={icon} />
-            {title}
+            <NavLink to={to}>
+                <Icon name={icon} />
+                {title}
+            </NavLink>   
         </Item>
     );
 };
