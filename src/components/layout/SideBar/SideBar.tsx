@@ -3,9 +3,6 @@ import { Menu, MenuItem as Item, Sidebar } from 'semantic-ui-react'
 import ResearcherCard from './SideBarResearcherCard';
 import { SideBarItems } from './SideBar.items';
 import SideBarItem from './SideBarItem';
-import { Router, Switch } from 'react-router';
-import { createHashHistory, createMemoryHistory, createBrowserHistory } from 'history';
-import { BrowserRouter } from 'react-router-dom';
 
 export const SideBar = () => {
   const [visible, setVisible] = useState(true)
@@ -20,7 +17,7 @@ export const SideBar = () => {
     width='wide'
     className="bg-dark"
     >
-      <Item >
+      <Item onClick={() => setVisible(!visible)}>
         <ResearcherCard/>
       </Item>
 
