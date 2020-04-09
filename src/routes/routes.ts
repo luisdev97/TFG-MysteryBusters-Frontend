@@ -1,8 +1,13 @@
 import Researchers from './Researchers';
+import IncidentsPaper from '../components/incidents/IncidentsPaper/PageSet/PageSet';
 const routes = [
     {
         path: '/researchers',
         component: Researchers
+    },
+    {
+        path: '/incidents',
+        component: IncidentsPaper
     }
 ]
 

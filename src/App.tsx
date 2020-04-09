@@ -10,11 +10,11 @@ function App() {
         <Grid>
           <Row columns={2}>
 
-            <Column style={{ background: "orange" }}>
+            <Column width={3}>
               <SideBar />
             </Column>
 
-            <Column style={{ background: "yellow" }}>
+            <Column width={13} className={"bg-info"}>
               <AppRouter/>
             </Column>
 
