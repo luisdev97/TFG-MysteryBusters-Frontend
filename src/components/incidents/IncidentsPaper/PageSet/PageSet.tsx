@@ -6,7 +6,7 @@ import Page from "../Page/Page";
 
 function PageSet() {
   return (
-    <Grid className="IncidentsPaper mx-auto mt-5 " verticalAlign={"middle"}>
+    <Grid className="IncidentsPaper mx-auto" verticalAlign={"middle"}>
 
         <Row columns={1} className="mx-auto" >
           <NewsHeader />

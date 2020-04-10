@@ -1,5 +1,5 @@
 import Researchers from './Researchers';
-import IncidentsPaper from '../components/incidents/IncidentsPaper/PageSet/PageSet';
+import IncidentsPaper from '../components/incidents/IncidentsPaper/IncidentsPaper';
 const routes = [
     {
         path: '/researchers',
