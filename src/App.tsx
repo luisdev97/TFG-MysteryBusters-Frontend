@@ -6,7 +6,7 @@ import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
-      <div className="App">
+      <div >
         <Grid>
           <Row columns={2}>
 
@@ -14,7 +14,7 @@ function App() {
               <SideBar />
             </Column>
 
-            <Column width={13} className={"bg-info"}>
+            <Column width={13} >
               <AppRouter/>
             </Column>
 

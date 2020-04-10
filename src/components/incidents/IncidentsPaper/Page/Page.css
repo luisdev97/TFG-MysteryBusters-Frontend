@@ -2,10 +2,26 @@
   font-size: 18px;
   line-height: 20px;
   display: inline-block;
-  padding: 0 4% 0 4%;
+  padding: 0 2% 0 2%;
   vertical-align: top;
   margin-bottom: 50px;
   transition: all 0.7s;
+  text-align: center;
+  min-height: 628.5px;
+  
+
+}
+
+.page2 {
+  border-left: 1px solid black;
+}
+
+.incident-column:has(:has(:first-child)){
+  border-right: 4px solid black;
+}
+
+.incident-column:first {
+  border-left: 1px solid black;
 }
 
 .incident-column .headline {
@@ -13,20 +29,10 @@
   line-height: normal;
   font-family: "Playfair Display", serif;
   display: block;
-  margin: 0 auto;
-}
-
-.incident-column p {
-  width: 80%;
-  margin-left: 12%;
 }
 
 .incident-text {
-  margin-top: 6%;
-}
-
-.incident-column + * {
-  border-left: 1px solid black;
+  margin-top: 5%;
 }
 
 .incident-column .headline.hl5 {
@@ -46,7 +52,7 @@
 .incident-column .headline.hl6:before {
   border-top: 1px solid #2f2f2f;
   content: "";
-  width: 180px;
+  width: 60%;
   height: 7px;
   display: block;
   margin: 0 auto;
@@ -54,7 +60,7 @@
 .incident-column .headline.hl6:after {
   border-bottom: 1px solid #2f2f2f;
   content: "";
-  width: 180px;
+  width: 60%;
   height: 10px;
   display: block;
   margin: 0 auto;
