@@ -4,26 +4,26 @@ import FlipPage from "react-flip-page";
 import PageSet from "./PageSet/PageSet";
 import { useQuery } from "@apollo/client";
 import { INCIDENTS_QUERY } from '../../graphql/queries/index';
-
-
-
-
+import chunk from "../../helpers/chunkIncidents";
+import { Incident } from "../../models/entities/Incidents";
 
 
 const IncidentsPaper = () => {
-  const { loading, error, data } = useQuery(INCIDENTS_QUERY);
-  const [incidents, setIncidents ] = useState<any[][]>([[]]);
+  const { loading, error, data } = useQuery(INCIDENTS_QUERY, {
+    variables: {
+      offset: 0,
+      limit: 4
+    }
+  });
+  const [incidents, setIncidents ] = useState<Array<Incident[]>>([[]]);
 
   useEffect(() => {
     if(!loading && data){
-      console.log(data);
-      //setIncidents(chunk(data.getIncidents,2));
+      setIncidents(chunk(data.getIncidents,2));
     }
-  },[data]);
+  },[data, loading]);
 
- function mapIncidents(incidents: any[][]) {
-   return incidents.map(iSet => <PageSet/>);
- }
+
 
 
   if (loading) return <p>Loading...</p>;
@@ -38,9 +38,8 @@ const IncidentsPaper = () => {
       perspective={"420em"}
       pageBackground={"#C1B8A0"}
       maskOpacity={0.7}
-      
     >
-      { incidents && mapIncidents(incidents)}
+      { incidents.map(iSet => <PageSet/>) }
     </FlipPage>
   );
 };
