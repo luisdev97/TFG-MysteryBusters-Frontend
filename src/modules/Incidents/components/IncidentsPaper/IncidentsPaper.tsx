@@ -2,25 +2,13 @@ import React, { useState, useEffect } from "react";
 // @ts-ignore
 import FlipPage from "react-flip-page";
 import PageSet from "./PageSet/PageSet";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { INCIDENTS_QUERY } from '../../graphql/queries/index';
 
 
-const chunk = (arr: [], size: number) =>
-  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-    arr.slice(i * size, i * size + size)
-  );
 
-const INCIDENTS_QUERY = gql`
-query incidents {
-  getIncidents {
-		description
-    maxResearchers
-    researchers {
-		username
-    }
-  }
-}
-`
+
+
 
 const IncidentsPaper = () => {
   const { loading, error, data } = useQuery(INCIDENTS_QUERY);
@@ -28,10 +16,14 @@ const IncidentsPaper = () => {
 
   useEffect(() => {
     if(!loading && data){
-      console.log(chunk(data.getIncidents,2));
-      setIncidents(chunk(data.getIncidents,2));
+      console.log(data);
+      //setIncidents(chunk(data.getIncidents,2));
     }
-  },[data])
+  },[data]);
+
+ function mapIncidents(incidents: any[][]) {
+   return incidents.map(iSet => <PageSet/>);
+ }
 
 
   if (loading) return <p>Loading...</p>;
@@ -48,11 +40,9 @@ const IncidentsPaper = () => {
       maskOpacity={0.7}
       
     >
-      <PageSet/>
-      <PageSet/>
+      { incidents && mapIncidents(incidents)}
     </FlipPage>
   );
 };
-//<FlipPage style={{marginTop: "50px", boxShadow: "0px 0px 30px black"}} className="journalWrapper" animationDuration={1300} className="container" height={850} width={1200} orientation="horizontal">
 
 export default IncidentsPaper;

@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import { SideBar } from "./components/layout/SideBar/SideBar";
+import { SideBar } from "./layouts/layout/SideBar/SideBar";
 import { Grid, GridRow as Row, GridColumn as Column } from "semantic-ui-react";
 import AppRouter from "./routes/AppRouter";
 
