@@ -2,7 +2,7 @@ import React from "react";
 // @ts-ignore
 import FlipPage from "react-flip-page";
 import PageSet from "./PageSet/PageSet";
-import { Incident } from '../../models/entities/Incidents';
+import { IncidentsPaperProps } from "../../props/IncidentsProps";
 
 const IncidentsPaper = ({ incidents, loadMore }: IncidentsPaperProps) => {
   return (
@@ -25,8 +25,4 @@ const IncidentsPaper = ({ incidents, loadMore }: IncidentsPaperProps) => {
   );
 };
 
-export type IncidentsPaperProps = {
-  incidents: Array<Incident[]>
-  loadMore: Function
-}
 export default IncidentsPaper;

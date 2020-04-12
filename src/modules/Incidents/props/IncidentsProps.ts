@@ -1,5 +1,6 @@
-import { Incident } from '../../../../../mystery-busters/src/anomalies/entities/incident.entity';
+import { Incident } from '../models/entities/Incidents';
+
 export type IncidentsPaperProps = {
     incidents: Array<Incident[]>
-    onLoadMore: Function
-}
+    loadMore: Function
+  }
