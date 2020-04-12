@@ -1,5 +1,6 @@
 import Researchers from './Researchers';
 import IncidentsPaper from '../modules/Incidents/components/IncidentsPaper/IncidentsPaper';
+import { INCIDENTS_QUERY } from '..//modules/Incidents/graphql/queries';
 
 const routes = [
     {
@@ -8,7 +9,10 @@ const routes = [
     },
     {
         path: '/incidents',
-        component: IncidentsPaper
+        component: IncidentsPaper,
+        props : {
+            query: INCIDENTS_QUERY
+        }
     }
 ]
 

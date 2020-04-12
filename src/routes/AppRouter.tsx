@@ -3,7 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import routes from "./routes";
 
 function AppRouter() {
-  const routeComponents = routes.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);
+  const routeComponents = routes.map(({ path, component }, key) => {
+    return <Route exact path={path} component={component} key={ key }/>;
+  })
 
   return (
       <Switch>
