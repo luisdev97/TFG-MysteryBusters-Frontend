@@ -2,7 +2,7 @@ import React from "react";
 // @ts-ignore
 import FlipPage from "react-flip-page";
 import PageSet from "./PageSet/PageSet";
-import { IncidentsPaperProps } from "../../props/IncidentsProps";
+import { IncidentsPaperProps } from "../../props/PaperProps";
 
 const IncidentsPaper = ({ incidents, loadMore }: IncidentsPaperProps) => {
   return (
@@ -18,8 +18,9 @@ const IncidentsPaper = ({ incidents, loadMore }: IncidentsPaperProps) => {
         pageBackground={"#C1B8A0"}
         maskOpacity={0.7}
       >
-        {incidents && incidents.map(iSet => (
-          <PageSet />
+        
+        { (incidents && incidents.length > 1) && incidents.map(incidentSet => (
+          <PageSet incidents={ incidentSet }/>
         ))}
       </FlipPage>
   );

@@ -5,6 +5,8 @@ query incidents($offset: Int, $limit: Int) {
   getIncidents(offset: $offset, limit: $limit) {
     id
 		description
+    date
+    time
     maxResearchers
     researchers {
 		username

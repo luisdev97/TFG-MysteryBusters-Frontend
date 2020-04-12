@@ -3,8 +3,9 @@ import { GridRow as Row, GridColumn as Column, Grid } from "semantic-ui-react";
 import "./PageSet.css";
 import NewsHeader from "../NewsHeader/NewsHeader";
 import Page from "../Page/Page";
+import { PageSetProps } from '../../../props/PaperProps';
 
-function PageSet() {
+function PageSet({ incidents }: PageSetProps) {
   return (
     <Grid className="IncidentsPaper mx-auto" verticalAlign={"middle"}>
 
@@ -12,12 +13,12 @@ function PageSet() {
           <NewsHeader />
         </Row>
         <Row columns={2} className="mx-auto">
-          <Column width={8} >
-            <Page numPage={1}/>
+          <Column width={8} className="page1">
+            <Page incident={incidents[0]} numPage={1}/>
           </Column>
 
           <Column width={8}>
-            <Page numPage={2}/>
+            <Page incident={incidents[1]} numPage={2}/>
           </Column>
         </Row>
 
