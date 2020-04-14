@@ -13,7 +13,7 @@ function PageSet({ incidents }: PageSetProps) {
           <NewsHeader />
         </Row>
         <Row columns={2} className="mx-auto">
-          <Column width={8} className="page1">
+          <Column width={8} className="column1">
             <Page incident={incidents[0]} numPage={1}/>
           </Column>
 

@@ -6,13 +6,13 @@ import { PageProps } from '../../../props/PaperProps';
 import PageContent from './PageContent';
 
 function Page({ numPage, incident }: PageProps) {
-  const { description, date, time } = incident;
+  const { title, description, img, date, time } = incident;
 
   return (
-    <div className={ "incident-column " + (numPage === 1 ? "" : "") }>
-       <PageHeader title={ description }/>
-       <PageImage/>
-       <PageContent date={ date } time={ time }/>
+    <div className={ "incident-column " + (numPage === 1 ? "page1" : "page2") }>
+       <PageHeader title={ title } />
+       <PageImage time={ time } img={ img }/>
+       <PageContent date={ date } description={ description }/>
     </div>
   );
 }

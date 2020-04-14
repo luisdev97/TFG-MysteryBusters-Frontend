@@ -19,6 +19,11 @@ export type PageHeaderProps = {
 }
 
 export type PageContentProps = {
+  description: string;
   date: string;
+}
+
+export type PageImageProps = {
+  img: string;
   time: string;
 }

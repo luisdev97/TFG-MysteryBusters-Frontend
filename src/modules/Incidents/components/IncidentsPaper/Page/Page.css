@@ -4,15 +4,15 @@
   display: inline-block;
   padding: 0 2% 0 2%;
   vertical-align: top;
-  margin-bottom: 50px;
   transition: all 0.7s;
   text-align: center;
-  min-height: 628.5px;
+  min-height: 700.5px;
+  max-height: 700.5px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.page1 {
-  border-right: 1px solid black;
-}
+
 
 .incident-column .headline {
   text-align: center;
@@ -22,12 +22,15 @@
 }
 
 .incident-text {
-  margin-top: 5%;
+  margin-top: 3%;
+  height: 125px;
 }
 
 .incident-date {
   font-family: "Playfair Display", serif;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  margin-top: 10px;
+
 }
 
 .incident-column .headline.hl5 {
@@ -36,13 +39,13 @@
   text-transform: uppercase;
   font-style: italic;
   box-sizing: border-box;
-  padding: 10px 0 10px 0;
+  padding: 0px 0 10px 0;
 }
 .incident-column .headline.hl6 {
   font-weight: 400;
   font-size: 18px;
   box-sizing: border-box;
-  padding: 10px 0 10px 0;
+  padding-bottom: 1%
 }
 .incident-column .headline.hl6:before {
   border-top: 1px solid #2f2f2f;
@@ -80,5 +83,10 @@
 }
 
 .incident-image {
-  height: 150px;
+  height: 210px;
+  max-height: 210px;
+}
+
+.column1 {
+  border-right: 0.2px solid black;
 }
