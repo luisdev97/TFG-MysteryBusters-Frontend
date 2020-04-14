@@ -1,16 +1,15 @@
-import Researchers from './Researchers';
 import IncidentsPaperContainer from '../modules/Incidents/containers/IncidentsPaper/IncidentsPaper.container';
+import ResearcherListContainer from '../modules/Researchers/containers/Researcherlist/ResearcherList.container';
 
 const routes = [
     {
         path: '/researchers',
-        component: Researchers
+        component: ResearcherListContainer
     },
     {
         path: '/incidents',
         component: IncidentsPaperContainer,
-        
-    }
+    },
 ]
 
 
