@@ -6,16 +6,19 @@ import { gql } from '@apollo/client';
 
 export const GET_RESEARCHERS_QUERY = gql`
 query researchers {
-    getResarchers {
+    getResearchers {
         id
         firstname
         lastname
         username
         age
         email
+        password
         avatar
         role
-        competencies
+        competencies {
+            type
+        }
     }
 }
 `
