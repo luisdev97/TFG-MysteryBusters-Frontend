@@ -1,3 +1,14 @@
 .researcher-card {
-    width: 30%;
+  width: 30%;
+  height: 250px;
+  border: 1px solid black;
+  background-image: url(https://pikdone.com/wp-content/uploads/2020/02/freepik-abstract-realistic-technology-particle-background-free-vector-ai-eps_5e3f1c0806b98.jpeg);
+  background-size: cover;
+  opacity: 0.7;
+
 }
+.researcher-card::before {
+  opacity: 0.1;
+}
+
+
