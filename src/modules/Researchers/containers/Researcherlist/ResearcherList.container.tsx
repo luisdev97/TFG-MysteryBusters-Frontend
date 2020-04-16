@@ -6,7 +6,7 @@ import ResearcherList from '../../components/ResearcherList/ResearcherList';
 
 function ResearcherListContainer() {
     const [researchers, setResearchers] = useState<Researcher[]>([]);
-    const { error, loading, data } = useQuery(GET_RESEARCHERS_QUERY);
+    const { loading, data } = useQuery(GET_RESEARCHERS_QUERY);
 
     useEffect(() => {
         if(!loading && data){

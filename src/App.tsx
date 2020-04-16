@@ -7,13 +7,13 @@ function App() {
   return (
       <div >
         <Grid>
-          <Row columns={2}>
+          <Row columns={2} style={{marginLeft: 0}}>
 
-            <Column width={3}>
-              <SideBar />
+            <Column width={3} style={{marginLeft: 0}}>
+              <SideBar/>
             </Column>
 
-            <Column width={13} >
+            <Column width={13} style={{marginLeft: 0}}>
               <AppRouter/>
             </Column>
 
