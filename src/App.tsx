@@ -13,7 +13,7 @@ function App() {
               <SideBar/>
             </Column>
 
-            <Column width={13} style={{marginLeft: 0}}>
+            <Column width={13} style={{marginLeft: 0}} className="bg-dark">
               <AppRouter/>
             </Column>
 

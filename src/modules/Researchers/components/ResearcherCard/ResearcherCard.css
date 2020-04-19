@@ -3,14 +3,16 @@
 }
 
 .researcher-card {
-  padding: 2% 10% 0 2% !important;
+  padding: 0% !important;
   max-width: 150% !important;
   width: 327px !important;
-  height: 310px;
+  height: auto;
   border: 2px solid black;
   background: red;
-
+  transition: 2s;
 }
+
+
 
 
 

@@ -19,6 +19,11 @@ query researchers {
         competencies {
             type
         }
+        posted_anomalies {
+            id
+            type
+            description
+        }
     }
 }
 `
