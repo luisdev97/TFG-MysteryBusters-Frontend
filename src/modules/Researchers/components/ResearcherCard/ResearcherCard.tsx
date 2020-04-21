@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { ResearcherCardProps } from "../../props/Researcher";
-import { Card, Image, Dropdown, Button } from "semantic-ui-react";
+import { Card, Image } from "semantic-ui-react";
 import "./ResearcherCard.css";
+import CustomModal from "./CustomModal/CustomModal";
 
 function ResearcherCard({ researcher }: ResearcherCardProps) {
+  const { firstname, lastname, role, competencies, posted_anomalies } = researcher;
   const [hover, setHover] = useState(false);
   return (
     <Card
@@ -23,13 +25,14 @@ function ResearcherCard({ researcher }: ResearcherCardProps) {
           style={{ width: "120px" }}
         >
           <Card.Header className="mt-3">
-            <h4 className="mb-0">Luis</h4>
-            <h5 style={{ margin: 0 }}>Amador Montoro</h5>
+            <h4 className="mb-0">{ firstname }</h4>
+            <h5 style={{ margin: 0 }}>{ lastname }</h5>
           </Card.Header>
 
           <Card.Meta className="mt-2 mr-3 text-muted">
-            <h5>Administrador</h5>
+            <h5>{ role }</h5>
           </Card.Meta>
+
         </div>
 
         {hover && (
@@ -37,13 +40,9 @@ function ResearcherCard({ researcher }: ResearcherCardProps) {
             className="bg-dark mt-3"
             style={{ width: "100%", height: "50%" }}
           >
-            <div className="mx-auto d-inline bg-info">
-      
-            </div>
-
-            <div className="mx-auto d-inline bg-error">
-
-            </div>
+            <CustomModal modalType="competencie" data={{ competencies }} />
+            <CustomModal modalType="anomaly" data={{ posted_anomalies }} />
+            <CustomModal modalType="competencie" data={{ competencies }} />
             
           </div>
         )}
@@ -51,5 +50,12 @@ function ResearcherCard({ researcher }: ResearcherCardProps) {
     </Card>
   );
 }
+
+
+/*type ResearcherCardInfoProps = {
+  firstname: string;
+  lastname: string;
+  role: string;
+}*/
 
 export default ResearcherCard;

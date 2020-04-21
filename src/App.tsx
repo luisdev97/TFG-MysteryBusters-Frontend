@@ -2,6 +2,8 @@ import React from "react";
 import { SideBar } from "./layouts/layout/SideBar/SideBar";
 import { Grid, GridRow as Row, GridColumn as Column } from "semantic-ui-react";
 import AppRouter from "./routes/AppRouter";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (

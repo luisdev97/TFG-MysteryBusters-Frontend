@@ -12,6 +12,11 @@
   transition: 2s;
 }
 
+.modal-button {
+  width: 80% !important;
+  margin: 4% 0 0 10% !important;
+}
+
 
 
 

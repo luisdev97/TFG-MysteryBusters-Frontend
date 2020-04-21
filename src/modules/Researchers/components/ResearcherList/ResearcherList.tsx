@@ -10,7 +10,7 @@ function ResearcherList({ researchers }: ResearcherListProps) {
     <div>
       <Coverflow
         width="2"
-        height="500"
+        height="928"
         displayQuantityOfSide={2}
         navigation={true}
         enableScroll={true}

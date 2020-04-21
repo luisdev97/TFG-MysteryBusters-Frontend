@@ -4,7 +4,7 @@ import { Anomaly } from '../../../Anomalies/models/entities/Anomaly';
 export interface Researcher {
     id: number;
     firstname: string;
-    lastaname: string;
+    lastname: string;
     username: string;
     email: string; 
     password: string;
