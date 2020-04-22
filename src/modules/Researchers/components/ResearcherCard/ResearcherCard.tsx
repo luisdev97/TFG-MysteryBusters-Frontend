@@ -5,7 +5,7 @@ import "./ResearcherCard.css";
 import CustomModal from "./CustomModal/CustomModal";
 
 function ResearcherCard({ researcher }: ResearcherCardProps) {
-  const { firstname, lastname, role, competencies, posted_anomalies } = researcher;
+  const { firstname, lastname, role, competencies, posted_anomalies, assigned_incidents } = researcher;
   const [hover, setHover] = useState(false);
   return (
     <Card
@@ -42,7 +42,7 @@ function ResearcherCard({ researcher }: ResearcherCardProps) {
           >
             <CustomModal modalType="competencie" data={{ competencies }} />
             <CustomModal modalType="anomaly" data={{ posted_anomalies }} />
-            <CustomModal modalType="competencie" data={{ competencies }} />
+            <CustomModal modalType="incident" data={{ assigned_incidents }} />
             
           </div>
         )}

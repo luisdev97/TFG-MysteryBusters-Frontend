@@ -1,5 +1,6 @@
 import { Competencie } from './Competencie';
 import { Anomaly } from '../../../Anomalies/models/entities/Anomaly';
+import { Incident } from '../../../Incidents/models/entities/Incidents';
 
 export interface Researcher {
     id: number;
@@ -13,4 +14,5 @@ export interface Researcher {
     role?: string;
     competencies: Competencie[]
     posted_anomalies: Anomaly[]
+    assigned_incidents: Incident[]
 }    

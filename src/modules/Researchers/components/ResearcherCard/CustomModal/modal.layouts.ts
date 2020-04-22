@@ -18,7 +18,7 @@ export const ModalLayouts: any = {
         buttonText: "Resolved incidents",
         buttonIcon: "tasks",
         modalHeader: "Resolved incidents",
-        dataKey: "incident",
+        dataKey: "assigned_incidents",
         valueKey: "description"
     }
 

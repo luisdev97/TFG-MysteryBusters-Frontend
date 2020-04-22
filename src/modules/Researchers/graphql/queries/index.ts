@@ -24,6 +24,10 @@ query researchers {
             type
             description
         }
+        assigned_incidents {
+            id
+            description
+        }
     }
 }
 `
