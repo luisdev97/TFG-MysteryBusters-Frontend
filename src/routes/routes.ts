@@ -1,5 +1,6 @@
 import IncidentsPaperContainer from '../modules/Incidents/containers/IncidentsPaper/IncidentsPaper.container';
 import ResearcherListContainer from '../modules/Researchers/containers/Researcherlist/ResearcherList.container';
+import AnomaliesListContainer from '../modules/Anomalies/containers/AnomaliesList/AnomaliesList.container';
 
 const routes = [
     {
@@ -10,31 +11,11 @@ const routes = [
         path: '/incidents',
         component: IncidentsPaperContainer,
     },
-]
-
-
-export default routes;
-        /*
-        
     {
         path: '/anomalies',
-        render: '<div className="bg-error">Anomalies</div>'
-    },
-    {
-        path: '/incidents',
-        render: '<div className="bg-success">Incidents</div>'
-    },
-   
-        {
-    path: "/users",
-    layout: DefaultLayout,
-    component: CustomTable,
-    props: {
-      title: "users.title",
-      tableTitle: "usersTable.tableTitle",
-      tableType: "users",
-      query: GET_USERS,
-      entity: "user",
-      createLink: "/user"
+        component: AnomaliesListContainer
     }
-  },*/
+]
+
+export default routes;
+ 
