@@ -9,14 +9,14 @@ export const ModalLayouts: any = {
     },
     anomaly: {
         buttonText: "Posted anomalies",
-        buttonIcon: "tasks",
+        buttonIcon: "pencil",
         modalHeader: "Posted anomalies",
         dataKey: "posted_anomalies",
         valueKey: "description"
     },
     incident: {
         buttonText: "Resolved incidents",
-        buttonIcon: "tasks",
+        buttonIcon: "trophy",
         modalHeader: "Resolved incidents",
         dataKey: "assigned_incidents",
         valueKey: "description"
