@@ -10,13 +10,6 @@ export const GET_ANOMALIES_QUERY = gql`
             }
             type
             description
-            incidents {
-                id
-                title
-                location
-                maxResearchers
-                resolved
-            }
         }
     }
 `
