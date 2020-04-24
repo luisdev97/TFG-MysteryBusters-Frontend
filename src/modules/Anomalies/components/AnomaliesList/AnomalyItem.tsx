@@ -8,14 +8,15 @@ import {
   CardContent as Content,
   CardHeader as Header,
   CardMeta as Meta,
-  Image
+  Image,
+  Segment
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 function AnomalyItem({ anomaly }: AnomalyItemProps) {
   const { id, description, type, creator } = anomaly;
 
   return (
-    <ListItem className="pl-2 pr-2 w-75 mx-auto">
+    <ListItem className="pl-2 pr-2 w-75 mx-auto mt-2">
       <Link to={`anomalies/${id}`}>
       <Card color={"teal"} fluid link={true}>
         <Content textAlign={"left"} extra={true}>
@@ -24,11 +25,12 @@ function AnomalyItem({ anomaly }: AnomalyItemProps) {
             size={"small"}
             src="https://www.w3schools.com/w3css/img_lights.jpg"
           />
-          <Header content={description} className="mt-2 ml-4 a-item-header" />
+          <Header content={description} className="mt-1 ml-4 a-item-header" />
           <Meta
             content={creator && `${creator.firstname} ${creator.lastname}`}
             className="ml-4 a-item-meta"
           />
+          <Segment content={ type.toLocaleUpperCase() } size={'small'} inverted floated={'left'} className="mt-2"/>
         </Content>
       </Card>
       </Link>

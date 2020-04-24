@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ONE_ANOMALY_QUERY } from '../graphql/queries/anomalies';
 import { Anomaly } from "../models/entities/Anomaly";
+import { useParams } from "react-router";
 
 function AnomalyDetailContainer() {
+  const { id } =  useParams();
+  const [ anomaly, setAnomaly ] = useState<Anomaly>()
   const {error, loading, data } = useQuery(GET_ONE_ANOMALY_QUERY, {
       variables : {
-          id: 5
+          id: Number(id)
       },
       fetchPolicy: "cache-and-network"
   });
-  const [ anomaly, setAnomaly ] = useState<Anomaly>()
 
   useEffect(() => {
     if(!loading && data){

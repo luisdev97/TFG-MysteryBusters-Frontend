@@ -2,12 +2,10 @@ import React from "react";
 import { SideBar } from "./layouts/layout/SideBar/SideBar";
 import { Grid, GridRow as Row, GridColumn as Column } from "semantic-ui-react";
 import AppRouter from "./routes/AppRouter";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import './App.css';
 
 function App() {
   return (
-      <div >
         <Grid>
           <Row columns={2} style={{marginLeft: 0}}>
 
@@ -15,13 +13,12 @@ function App() {
               <SideBar/>
             </Column>
 
-            <Column width={13} style={{marginLeft: 0}} className="bg-dark">
+            <Column className="h-100" width={13} style={{marginLeft: 0}} color={'teal'} >
               <AppRouter/>
             </Column>
 
           </Row>
         </Grid>
-      </div>
   );
 }
 
