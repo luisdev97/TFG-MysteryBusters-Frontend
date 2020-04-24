@@ -7,7 +7,8 @@ function AnomalyDetailContainer() {
   const {error, loading, data } = useQuery(GET_ONE_ANOMALY_QUERY, {
       variables : {
           id: 5
-      }
+      },
+      fetchPolicy: "cache-and-network"
   });
   const [ anomaly, setAnomaly ] = useState<Anomaly>()
 
@@ -15,10 +16,13 @@ function AnomalyDetailContainer() {
     if(!loading && data){
         setAnomaly(data.getAnomaly);
     }
+    if(error){
+      console.log(error);
+    }
   },[loading, data]);
 
   if (loading) return <p>Loading :</p>;
-  if (error) return <p>Error :</p>;
+  if (error) return <p>Error : </p>;
 
 
   return <div></div>;

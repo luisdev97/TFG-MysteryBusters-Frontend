@@ -8,7 +8,7 @@ function AnomaliesList({ anomalies }: AnomaliesListProps) {
   return (
     <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
       {anomalies.map(a => (
-        <AnomalyItem anomaly={a}/>
+        <AnomalyItem key={a.id} anomaly={a}/>
       ))}
     </List>
   );

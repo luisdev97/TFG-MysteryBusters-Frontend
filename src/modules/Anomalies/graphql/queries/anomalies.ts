@@ -22,7 +22,7 @@ export const GET_ANOMALIES_QUERY = gql`
 `
 
 export const GET_ONE_ANOMALY_QUERY = gql`
-    query anomaly($id: Int) {
+    query anomaly($id: Int!) {
         getAnomaly(id: $id ){
             ...requiredFields
             incidents {
