@@ -1,0 +1,21 @@
+.anomaly-detail-container {
+    padding: 0;
+    background: rgba(39, 38, 38, 0.95);
+    width: 80% !important;
+    height: 90% !important;
+    max-height: 90% !important;
+    margin-top: 5%;
+    border-radius: 1.5%;
+    left: 10%;
+    position: absolute;
+}
+
+
+.map-container {
+    margin-top: 20%;
+    background: white;
+    width: 40% !important;
+    height: 50% !important;
+    border-radius: 1.5%;
+    margin-left: 2% 
+}

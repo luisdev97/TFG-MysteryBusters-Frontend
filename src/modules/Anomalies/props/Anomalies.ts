@@ -7,3 +7,7 @@ export type AnomaliesListProps = {
 export type AnomalyItemProps = {
     anomaly: Anomaly;
 }
+
+export type AnomalyDetailProps = {
+    anomaly: Anomaly;
+}
