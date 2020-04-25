@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AnomalyDetail.css";
 import ReactMapboxGl, { Layer, Marker, Feature, Image } from "react-mapbox-gl";
 import markerIcon from "../../../../assets/icons/ovni.png"
@@ -9,17 +9,19 @@ const Map = ReactMapboxGl({
 });
 
 function IncidentsMap() {
+  const [center, setCenter] = useState<[number,number]>([-5.9818, 37.3565])
   return (
     
     <Map
-      style="mapbox://styles/mapbox/streets-v11"
+      style="mapbox://styles/mapbox/dark-v9"
       containerStyle={mapStyles}
-      center={[-5.9818, 37.3565]}
+      center={center}
       zoom={[14]}
+      className="map-container"
     >
-      <Image id={"ufo"} url={markerIcon}/>
+      <Image id={"ufo"} url={markerIcon} options={{width: "90px"}}/>
       <Layer type="symbol" id="marker" layout={{ "icon-image": "ufo" }}>
-        <Feature coordinates={[-5.9818, 37.3565]} draggable />
+        <Feature coordinates={center} draggable />
       </Layer>
     </Map>
   );
@@ -27,9 +29,9 @@ function IncidentsMap() {
 
 const mapStyles = {
   height: "50%",
-  width: "40%",
+  width: "90%",
   top: "30%",
-  left: "3%",
+  left: "5%",
   borderRadius: "1.5%"
 };
 

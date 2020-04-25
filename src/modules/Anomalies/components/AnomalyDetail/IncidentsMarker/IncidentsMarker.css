@@ -1,0 +1,16 @@
+.incidents-marker-list{
+    margin-top: 15% !important;
+    height: 80%;
+    width: 90%;
+    font-size: 2em;
+    overflow: scroll;
+}
+
+.incident-maker {
+    padding: 2% 0 2% !important;
+    height: 10%;
+}
+
+.incident-maker:not(:first-of-type){
+    margin-top: 5%;
+}

@@ -6,6 +6,6 @@ export interface Anomaly {
     creator?: Researcher;
     description: string;
     type: string;
-    incidents?: Incident[];
+    incidents: Incident[];
 }    
     
