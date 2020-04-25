@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 import "./AnomalyDetail.css";
-import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Marker, Feature, Image } from "react-mapbox-gl";
+import markerIcon from "../../../../assets/icons/ovni.png"
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -10,21 +10,16 @@ const Map = ReactMapboxGl({
 
 function IncidentsMap() {
   return (
+    
     <Map
-      style="mapbox://styles/mapbox/streets-v9"
+      style="mapbox://styles/mapbox/streets-v11"
       containerStyle={mapStyles}
       center={[-5.9818, 37.3565]}
+      zoom={[14]}
     >
-      <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }} >
-        
-        <Marker coordinates={[-5.9818, 37.3565]} anchor="bottom">
-          <img
-            src={
-              "https://img.pngio.com/computer-icons-google-map-maker-marker-p-22492-png-images-pngio-google-map-icon-png-900_520.png"
-            }
-          />
-        </Marker>
-        
+      <Image id={"ufo"} url={markerIcon}/>
+      <Layer type="symbol" id="marker" layout={{ "icon-image": "ufo" }}>
+        <Feature coordinates={[-5.9818, 37.3565]} draggable />
       </Layer>
     </Map>
   );
