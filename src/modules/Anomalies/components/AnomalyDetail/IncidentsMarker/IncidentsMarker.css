@@ -6,11 +6,13 @@
     overflow: scroll;
 }
 
-.incident-maker {
-    padding: 2% 0 2% !important;
+.incident-marker {
+    padding: 2% 0  !important;
+    background: mediumseagreen !important;
+    width: 80%;
     height: 10%;
 }
 
-.incident-maker:not(:first-of-type){
+.incident-marker:not(:first-of-type){
     margin-top: 5%;
 }

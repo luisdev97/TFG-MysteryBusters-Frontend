@@ -21,3 +21,7 @@ export type IncidentsMapProps = {
 export type IncidentsMarkerProps = {
     incidents: Incident[];
 }
+
+export type IncidentMarkerProps = {
+    incident: Incident;
+}
