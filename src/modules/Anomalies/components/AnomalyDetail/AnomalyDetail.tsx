@@ -11,14 +11,16 @@ import {
 import IncidentsMarker from "./IncidentsMarker/IncidentsMarker";
 
 function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
-    const { incidents } = anomaly;
+  const { incidents, description, creator } = anomaly;
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
+          <h1 className="text-center">{ description }</h1>
+          <h4 className="text-center">{ creator && creator.firstname }</h4>
           <IncidentsMap />
         </Column>
-        <Column width={8} className="bg-primary">
+        <Column width={8}>
             <IncidentsMarker incidents={ incidents }/>
         </Column>
       </Row>

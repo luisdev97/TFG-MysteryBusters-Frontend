@@ -3,7 +3,7 @@ import { Incident } from "../../../Incidents/models/entities/Incidents";
 
 export interface Anomaly {
     id: number;
-    creator?: Researcher;
+    creator: Researcher;
     description: string;
     type: string;
     incidents: Incident[];
