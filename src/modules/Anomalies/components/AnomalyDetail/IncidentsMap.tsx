@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AnomalyDetail.css";
-import ReactMapboxGl, { Layer, Marker, Feature, Image } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Feature, Image } from "react-mapbox-gl";
 import markerIcon from "../../../../assets/icons/ovni.png"
 
 const Map = ReactMapboxGl({
@@ -25,12 +25,13 @@ function IncidentsMap() {
       </Layer>
     </Map>
   );
+
 }
 
 const mapStyles = {
   height: "50%",
   width: "90%",
-  top: "30%",
+  top: "15%",
   left: "5%",
   borderRadius: "1.5%"
 };
