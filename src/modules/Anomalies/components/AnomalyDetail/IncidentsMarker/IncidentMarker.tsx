@@ -7,11 +7,12 @@ import {
 } from "semantic-ui-react";
 import { IncidentMarkerProps } from "../../../props/Anomalies";
 
-const IncidentMarker = ({ incident }: IncidentMarkerProps) => {
+const IncidentMarker = ({ incident, handleChangeLocation }: IncidentMarkerProps) => {
+  const { location } = incident;
   return (
     <ListItem className="mx-auto incident-marker">
       <Icon
-        onClick={() => console.log("click")}
+        onClick={() => handleChangeLocation(location) }
         name="map marker alternate"
         color="red"
         size="large"
