@@ -8,7 +8,7 @@ import {
 import { IncidentMarkerProps } from "../../../props/Anomalies";
 
 const IncidentMarker = ({ incident, handleChangeLocation }: IncidentMarkerProps) => {
-  const { location } = incident;
+  const { title, location } = incident;
   return (
     <ListItem className="mx-auto incident-marker">
       <Icon
@@ -18,7 +18,7 @@ const IncidentMarker = ({ incident, handleChangeLocation }: IncidentMarkerProps)
         size="large"
       />
       <Content
-        content={incident.title || "Avistamiento de Wailor en la casa de zeus"}
+        content={ title || "Avistamiento de Wailor en la casa de zeus" }
         className="inc-marker-text"
       />
     </ListItem>

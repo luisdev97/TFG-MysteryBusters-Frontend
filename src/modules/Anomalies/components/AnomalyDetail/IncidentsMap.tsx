@@ -1,33 +1,61 @@
 import React, { useState, createContext, useContext } from "react";
 import "./AnomalyDetail.css";
-import ReactMapboxGl, { Layer, Feature, Image } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Feature, Image, Popup } from "react-mapbox-gl";
+import { IncidentsMapProps } from "../../props/Anomalies";
+import { ButtonGroup, Button, Icon } from "semantic-ui-react";
 import markerIcon from "../../../../assets/icons/ovni.png";
 
-import { IncidentsMapProps } from '../../props/Anomalies';
-
+const locationAPi = "";
+const private_key =
+  "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
 const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA",
-})
+  accessToken: private_key
+});
 
-
-function IncidentsMap({ point } : IncidentsMapProps) {
-  //const [center, setCenter] = useState<LocationType>({ lng:-5.9818, lat: 37.3565 });
+function IncidentsMap({ point }: IncidentsMapProps) {
   const { lat, lng } = point;
+  const [popupProps, setPopupPros] = useState<any>({
+    visible: false,
+    coords: {}
+  });
+
   return (
-      <Map
-        style="mapbox://styles/mapbox/dark-v9"
-        containerStyle={mapStyles}
-        center={[lng, lat]}
-        zoom={[14]}
-        className="map-container"
-        onClick={(map: unknown, event: any) => { console.log(event.lngLat)}}
-      >
-        <Image id={"ufo"} url={markerIcon} options={{ width: "90px" }} />
-        <Layer type="symbol" id="marker" layout={{ "icon-image": "ufo" }} >
-          <Feature coordinates={[lng, lat]} draggable />
-        </Layer>
-      </Map>
+    <Map
+      style="mapbox://styles/mapbox/dark-v9"
+      containerStyle={mapStyles}
+      center={[lng, lat]}
+      zoom={[14]}
+      className="map-container"
+      onDblClick={async (m: unknown, e: any) => {
+        const { lat, lng } = e.lngLat;
+        const coords = { lat, lng };
+        setPopupPros({ visible: true, coords });
+      }}
+      onClick={() => setPopupPros({ ...popupProps, visible: false })}
+    >
+      <Image id={"ufo"} url={markerIcon} options={{ width: "90px" }} />
+
+      {popupProps.visible && (
+        <Popup coordinates={[popupProps.coords.lng, popupProps.coords.lat]}>
+          <Button.Group>
+            <Button
+              onClick={() => setPopupPros({ ...popupProps, visible: false })}
+            >
+              Cancelar
+            </Button>
+            <Button.Or text="<>" />
+            <Button positive>
+              <Icon name="add" color="grey" />
+              Incidente
+            </Button>
+          </Button.Group>
+        </Popup>
+      )}
+
+      <Layer type="symbol" id="marker" layout={{ "icon-image": "ufo" }}>
+        <Feature coordinates={[lng, lat]} draggable />
+      </Layer>
+    </Map>
   );
 }
 
