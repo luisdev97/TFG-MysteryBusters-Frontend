@@ -20,6 +20,7 @@
     "react-coverflow": "^0.2.20",
     "react-dom": "^16.13.1",
     "react-flip-page": "^1.6.0",
+    "react-hook-form": "^5.6.1",
     "react-mapbox-gl": "^4.8.3",
     "react-responsive-carousel": "^3.2.4",
     "react-router-dom": "^5.1.2",

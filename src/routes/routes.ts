@@ -2,6 +2,7 @@ import IncidentsPaperContainer from '../modules/Incidents/containers/IncidentsPa
 import ResearcherListContainer from '../modules/Researchers/containers/Researcherlist/ResearcherList.container';
 import AnomaliesListContainer from '../modules/Anomalies/containers/AnomaliesList/AnomaliesList.container';
 import AnomalyDetailContainer from '../modules/Anomalies/containers/AnomalyDetail.container';
+import IncidentForm from '../modules/Incidents/components/Form/IncidentForm';
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
         path: '/anomalies',
         component: AnomaliesListContainer
     },
+    {
+        path: '/form',
+        component: IncidentForm
+    }
     
 ]
 

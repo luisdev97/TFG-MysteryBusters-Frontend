@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ListItem,
-  ListHeader as Header,
   ListIcon as Icon,
   ListContent as Content
 } from "semantic-ui-react";

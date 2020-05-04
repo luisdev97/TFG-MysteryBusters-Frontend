@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListHeader as Header, Icon, Popup } from 'semantic-ui-react';
+import { List, Icon, Popup } from 'semantic-ui-react';
 import { IncidentsMarkerProps } from "../../../props/Anomalies";
 import IncidentMarker from "./IncidentMarker";
 import "./IncidentsMarker.css";

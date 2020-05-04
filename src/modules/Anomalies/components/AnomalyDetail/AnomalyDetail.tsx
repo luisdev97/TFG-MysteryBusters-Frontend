@@ -17,7 +17,8 @@ function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
-          <h1 className="text-center">{description}</h1>
+          <h1 className="text-center mt-5">{description}</h1>
+          <p className="text-center">{ type }</p>
           <h4 className="text-center">
             {creator && creator.firstname + " " + creator.lastname}
           </h4>

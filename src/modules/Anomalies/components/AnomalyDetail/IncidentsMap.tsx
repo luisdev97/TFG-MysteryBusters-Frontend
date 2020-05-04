@@ -1,11 +1,10 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState } from "react";
 import "./AnomalyDetail.css";
 import ReactMapboxGl, { Layer, Feature, Image, Popup } from "react-mapbox-gl";
 import { IncidentsMapProps } from "../../props/Anomalies";
-import { ButtonGroup, Button, Icon } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import markerIcon from "../../../../assets/icons/ovni.png";
 
-const locationAPi = "";
 const private_key =
   "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
 const Map = ReactMapboxGl({
