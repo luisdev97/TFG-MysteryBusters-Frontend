@@ -1,39 +1,42 @@
-export const incidentFormFields: Array<formfield> = [
+export const incidentFormFields: Array<incidentsFormfield> = [
     {
         type: 'string',
-        name: 'titulo',
-        validation: { required: 'El campo título es requerido', minLength: 15, maxLength: 33 }
+        name: 'title',
+        span: 'título',
     },
     {
         type: 'textarea',
-        name: 'descripcion',
+        name: 'description',
+        span: 'descripción'
     },
     {
         type: 'file',
-        name: 'imagen',
-        validation: { required: 'El campo es requerido' }
+        name: 'img',
+        span: 'imagen',
     },
     {
         type: 'date',
-        name: 'fecha',
+        name: 'date',
+        span: 'fecha',
         validation: { required: 'El campo fecha es requerido', pattern: /^(\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))$/ }
     },
     {
         type: 'time',
-        name: 'hora',
+        name: 'time',
+        span: 'hora',
         validation: { required: 'El campo hora es requerido', pattern: /^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/ }
     },
     {
         type: 'number',
         name: 'maxResearchers',
-        validation: { required: 'El campo investigadores máximos es requerido', maxLength: 33 }
+        span: 'plazas disponibles',
     }]
 
-    type fields = 'titulo' | 'descripcion' | 'imagen' | 'fecha' | 'hora' | 'maxResearchers';
+    type fields = 'title' | 'description' | 'img' | 'date' | 'time' | 'maxResearchers';
 
-    type formfield = {
+    export type incidentsFormfield = {
         type: string;
         name: fields;
+        span: string;
         validation?: Object
-        
     }

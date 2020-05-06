@@ -5,17 +5,16 @@ import { incidentFormFields as fields } from "./fields";
 import INCIDENT_SCHEMA from './validation';
 
 type FormData = {
-  titulo: string;
-  descripcion: string;
-  imagen: string;
-  fecha: string;
-  hora: string;
+  title: string;
+  description: string;
+  img: string;
+  date: string;
+  time: string;
   maxResearchers: number;
 };
 
 export default function IncidentForm() {
   const { errors, register, handleSubmit, watch } = useForm<FormData>({ validationSchema: INCIDENT_SCHEMA });
-  const watchAll = watch();
   const onSubmit = (data: any) => console.log(data);
 
   return (
