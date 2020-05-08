@@ -4,9 +4,9 @@ import ReactMapboxGl, { Layer, Feature, Image, Popup } from "react-mapbox-gl";
 import { IncidentsMapProps } from "../../props/Anomalies";
 import { Button, Icon } from "semantic-ui-react";
 import markerIcon from "../../../../assets/icons/ovni.png";
+import { Link } from 'react-router-dom';
 
-const private_key =
-  "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
+const private_key = "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
 const Map = ReactMapboxGl({
   accessToken: private_key
 });
@@ -43,10 +43,16 @@ function IncidentsMap({ point }: IncidentsMapProps) {
               Cancelar
             </Button>
             <Button.Or text="<>" />
+            <Link to={{
+              pathname: '/form',
+              state: { location: popupProps.coords }
+            }}>
             <Button positive>
               <Icon name="add" color="grey" />
               Incidente
             </Button>
+            </Link>
+            
           </Button.Group>
         </Popup>
       )}

@@ -1,20 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
-import { incidentFormFields, incidentsFormfield } from '../modules/Incidents/components/Form/fields';
-type FormData = {
-    title: string;
-    description: string;
-    img: string;
-    date: string;
-    time: string;
-    maxResearchers: number;
-  };
+import { CustomFormProps } from './props';
 
-export default function CustomForm({ fields, validationSchema }: CustomFormProps) {
-    const { errors, register, handleSubmit, watch } = useForm<FormData>({ validationSchema: validationSchema });
+export default function CustomForm({ fields, validationSchema, handleChanges }: CustomFormProps) {
+    const { errors, register, handleSubmit, watch } = useForm({ validationSchema });
     const onSubmit = (data: any) => console.log(data);
-
+    const watchAllFields = watch();
 
   return (
     <Form
@@ -40,17 +32,16 @@ export default function CustomForm({ fields, validationSchema }: CustomFormProps
             name={i.name}
             ref={register()}
             className="d-inline"
+            onChange={ () => { handleChanges(watchAllFields) } }
           />
         </Field>
       ))}
-      <input type="submit" onClick={() => console.log(errors)} />
+      <input type="submit" onClick={() => console.log(errors)}/>
     </Form>
   );
 }
 
-type CustomFormProps = {
-  fields: incidentsFormfield[];
-  validationSchema: any;
 
-};
+
+
 

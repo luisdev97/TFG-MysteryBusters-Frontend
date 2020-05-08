@@ -5,7 +5,7 @@ function validateFileFormat(allowedType: string, actualType: string): boolean {
     return allowedType.includes(actualType.split('/')[0]);
 }
 
-const INCIDENT_SCHEMA = yup.object().shape({
+const INCIDENT_SCHEMA: yup.ObjectSchema<Object> = yup.object().shape({
     title: yup.string().required("el titulo es requerido")
         .min(15, `El título debe contener un mínimo de 15 caracteres`)
         .max(33, 'El título puede contener un máximo de 33 caracteres'),

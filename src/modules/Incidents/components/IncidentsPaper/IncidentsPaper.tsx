@@ -5,7 +5,7 @@ import PageSet from "./PageSet/PageSet";
 import { IncidentsPaperProps } from "../../props/PaperProps";
 
 const IncidentsPaper = ({ incidents, loadMore }: IncidentsPaperProps) => {
-  console.log(incidents);
+
   return (
       <FlipPage
         onPageChange={(pIndex: number, direction: string) => {
