@@ -3,14 +3,12 @@ import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
 import { CustomFormProps } from './props';
 
-export default function CustomForm<T>({ fields, validationSchema, handleChanges }: CustomFormProps<T>) {
-    const { errors, register, handleSubmit, watch } = useForm({ validationSchema });
-    const onSubmit = (data: any) => console.log(data);
-    const watchAllFields = watch();
+export default function CustomForm<T>({ fields, validationSchema, handleChanges, prevData }: CustomFormProps<T>) {
+    const { errors, register, watch, formState } = useForm({ validationSchema });
+    const watchedFields = watch(Array.from(formState.dirtyFields));
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
+    <Form 
       className="bg-dark mt-5 w-50 mx-auto"
       size="mini"
     >
@@ -31,12 +29,11 @@ export default function CustomForm<T>({ fields, validationSchema, handleChanges 
             type={i.type}
             name={i.name}
             ref={register()}
-            className="d-inline"
-            onChange={ () => { handleChanges(watchAllFields) } }
+            onChange={ () => { handleChanges({...prevData, ...watchedFields}) } }
+            className='v-hidden'
           />
         </Field>
       ))}
-      <input type="submit" onClick={() => console.log(errors)}/>
     </Form>
   );
 }

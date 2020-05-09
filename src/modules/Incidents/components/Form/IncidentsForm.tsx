@@ -27,24 +27,21 @@ const initialState: Incident = {
 export default function IncidentsForm() {
   const [formData, setFormData] = useState<Incident>(initialState);
 
-  const {
-    location: {
-      state: { location }
-    }
-  } = useHistory();
+  const { location: { state: { location } } } = useHistory();
 
   useEffect(() => {
+  
   }, [formData]);
 
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
-          <CustomForm
+          <CustomForm<Incident>
             fields={incidentsFieldsMap}
             validationSchema={INCIDENT_SCHEMA}
             handleChanges={setFormData}
-            prevData={ FormData }
+            prevData={ formData }
           />
         </Column>
 

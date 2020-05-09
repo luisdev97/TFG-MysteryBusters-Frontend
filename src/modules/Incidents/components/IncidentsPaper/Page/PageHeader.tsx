@@ -7,7 +7,7 @@ function PageHeader({ title }: PageHeaderProps) {
       <span className="headline hl5">{ title }</span>
       <p>
         <span className="headline hl6">
-          "La realidad es la punta del iceberg
+          "La realidad es la punta del iceberg"
         </span>
       </p>
     </div>
