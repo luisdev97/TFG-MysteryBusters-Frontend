@@ -14,8 +14,7 @@ export interface Incident {
     //researchers: Researcher[];
 }    
 
-export interface IncidentInput {
-    id: number;
+export interface createIncidentInput {
     anomaly_id: number;
     title: string;
     description: string;
@@ -24,18 +23,16 @@ export interface IncidentInput {
     date: string;
     time: string; 
     maxResearchers: number;
-    resolved: boolean;
 }
-    /*
-    id: number;
-    anomaly_id?: Anomaly['id'];
-    belong_to_anomaly: Anomaly;
-    description: string;
-    location: LocationType;
-    date: string;
-    time: string; 
-    maxResearchers: number;
-    resolved: boolean;
-    researchers: Researcher[];
-    */
-    
+
+export interface updateIncidentInput {
+    title?: string;
+    description?: string;
+    img?: string;
+    location?: LocationType;
+    date?: string;
+    time?: string; 
+    maxResearchers?: number;
+    resolved?: boolean
+}
+  

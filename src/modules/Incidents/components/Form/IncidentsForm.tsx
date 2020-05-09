@@ -4,14 +4,14 @@ import CustomForm from "../../../../UI/CustomForm";
 import INCIDENT_SCHEMA from "./validation";
 import { incidentsFieldsMap } from "./fields";
 import { useHistory } from "react-router";
-import { Incident, IncidentInput } from "../../models/entities/Incidents";
+import { Incident, updateIncidentInput, createIncidentInput } from '../../models/entities/Incidents';
 import Page from "../IncidentsPaper/Page/Page";
 import { CREATE_INCIDENT_MUTATION } from "../../graphql/mutations/index";
 import { useMutation } from "@apollo/client";
 
-const initialState: IncidentInput = {
-  id: 2,
-  anomaly_id: 2,
+const initialState: Incident = {
+  id: 4,
+  belong_to_anomaly: 2,
   title: "Este sera el título del incidente",
   description: "Esta será la descripción del incidente",
   img:
@@ -28,7 +28,7 @@ const initialState: IncidentInput = {
 };
 
 export default function IncidentsForm() {
-  const [formData, setFormData] = useState<IncidentInput>(initialState);
+  const [formData, setFormData] = useState<Incident>(initialState);
   const [createIncident, { data }] = useMutation(CREATE_INCIDENT_MUTATION);
 
   const {
@@ -38,24 +38,34 @@ export default function IncidentsForm() {
   } = useHistory();
 
   useEffect(() => {
-    console.log({ ...formData, ...location, anomaly_id });
+    console.log({ ...formData, anomaly_id });
   }, [formData,data]);
+
+  function create(){
+    try{
+      const input = { ...formData, anomaly_id };
+      createIncident({
+        variables: { input }
+      }).then( data => console.log(data)).then(error => console.log(error) )
+    }catch(e){
+      console.log(e)
+    }
+    
+  }
 
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
-          <CustomForm<IncidentInput>
+          <CustomForm<Incident>
             fields={incidentsFieldsMap}
             validationSchema={INCIDENT_SCHEMA}
             handleChanges={setFormData}
             prevData={formData}
           />
           <button
-            onClick={() =>
-              createIncident({
-                variables: { input: { ...formData, ...location, anomaly_id } }
-              })
+            onClick={() => create()
+      
             }
           >
             Comprobar
@@ -64,7 +74,7 @@ export default function IncidentsForm() {
 
         <Column width={8}>
           <div className="m-5">
-            {<Page incident={formData} numPage={1} />}
+            <Page incident={formData} numPage={1}/>
           </div>
         </Column>
       </Row>
