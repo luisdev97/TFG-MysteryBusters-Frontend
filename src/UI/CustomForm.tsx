@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
 import { CustomFormProps } from './props';
 
-export default function CustomForm<T>({ fields, validationSchema, handleChanges, prevData }: CustomFormProps<T>) {
+export default function CustomForm<T>({ fields, validationSchema, handleChanges, prevData, aditionalClasses }: CustomFormProps<T>) {
     const { errors, register, watch, formState } = useForm({ validationSchema });
     const watchedFields = watch(Array.from(formState.dirtyFields));
 
   return (
     <Form 
-      className="bg-dark mt-5 w-50 mx-auto"
+      className={`bg-dark mt-5 w-50 mx-auto ${aditionalClasses}`}
       size="mini"
     >
       {fields.map(i => (

@@ -7,5 +7,6 @@ export type CustomFormProps<T>= {
     validationSchema: yup.ObjectSchema<Object>;
     handleChanges: Dispatch<SetStateAction<any>>;
     prevData: T
+    aditionalClasses?: string;
   };
   

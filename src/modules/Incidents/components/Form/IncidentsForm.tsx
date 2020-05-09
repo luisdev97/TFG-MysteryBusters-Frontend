@@ -8,6 +8,7 @@ import { Incident, updateIncidentInput, createIncidentInput } from '../../models
 import Page from "../IncidentsPaper/Page/Page";
 import { CREATE_INCIDENT_MUTATION } from "../../graphql/mutations/index";
 import { useMutation } from "@apollo/client";
+import './IncidentsForm.css';
 
 const initialState: Incident = {
   id: 4,
@@ -26,7 +27,7 @@ const initialState: Incident = {
   maxResearchers: 8,
   resolved: false
 };
-
+ 
 export default function IncidentsForm() {
   const [formData, setFormData] = useState<Incident>(initialState);
   const [createIncident, { data }] = useMutation(CREATE_INCIDENT_MUTATION);
@@ -62,6 +63,7 @@ export default function IncidentsForm() {
             validationSchema={INCIDENT_SCHEMA}
             handleChanges={setFormData}
             prevData={formData}
+            aditionalClasses='incidentsForm'
           />
           <button
             onClick={() => create()
