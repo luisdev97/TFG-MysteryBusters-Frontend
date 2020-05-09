@@ -17,6 +17,7 @@ export type AnomalyDetailProps = {
 
 export type IncidentsMapProps = {
     point: LocationType;
+    anomaly_id: number;
 }
 
 export type IncidentsMarkerProps = {

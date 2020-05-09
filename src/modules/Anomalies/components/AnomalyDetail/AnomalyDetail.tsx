@@ -7,7 +7,7 @@ import IncidentsMarker from "./IncidentsMarker/IncidentsMarker";
 import { LocationType } from "../../../Incidents/models/types/LocationType";
 
 function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
-  const { incidents, description, creator, type } = anomaly;
+  const { id, incidents, description, creator, type } = anomaly;
   const [locationCoords, setLocationCoords] = useState<LocationType>({
     lng: -5.9818,
     lat: 37.3565,
@@ -23,7 +23,7 @@ function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
           <h4 className="text-center">
             {creator && creator.firstname + " " + creator.lastname}
           </h4>
-          <IncidentsMap point={locationCoords} />
+          <IncidentsMap point={locationCoords} anomaly_id={id} />
         </Column>
 
         <Column width={8}>

@@ -13,7 +13,7 @@ const Map = ReactMapboxGl({
   accessToken: private_key
 });
 
-function IncidentsMap({ point }: IncidentsMapProps) {
+function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
   const { lat, lng } = point;
   const [popupProps, setPopupPros] = useState<any>({
     visible: false, location: {}
@@ -49,7 +49,7 @@ function IncidentsMap({ point }: IncidentsMapProps) {
             <Link
               to={{
                 pathname: "/form",
-                state: { location: popupProps.location }
+                state: { location: popupProps.location, anomaly_id }
               }}
             >
               <Button positive>

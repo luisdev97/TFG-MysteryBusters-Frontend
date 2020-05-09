@@ -4,15 +4,18 @@ import CustomForm from "../../../../UI/CustomForm";
 import INCIDENT_SCHEMA from "./validation";
 import { incidentsFieldsMap } from "./fields";
 import { useHistory } from "react-router";
-import { Incident } from "../../models/entities/Incidents";
+import { Incident, IncidentInput } from "../../models/entities/Incidents";
 import Page from "../IncidentsPaper/Page/Page";
+import { CREATE_INCIDENT_MUTATION } from "../../graphql/mutations/index";
+import { useMutation } from "@apollo/client";
 
-const initialState: Incident = {
+const initialState: IncidentInput = {
   id: 2,
-  belong_to_anomaly: 2,
+  anomaly_id: 2,
   title: "Este sera el título del incidente",
   description: "Esta será la descripción del incidente",
-  img: "https://i.pinimg.com/originals/5c/f0/b3/5cf0b3d5ff8328687e751a7f9dffde06.gif",
+  img:
+    "https://i.pinimg.com/originals/5c/f0/b3/5cf0b3d5ff8328687e751a7f9dffde06.gif",
   location: {
     lat: 42,
     lng: 14,
@@ -25,34 +28,49 @@ const initialState: Incident = {
 };
 
 export default function IncidentsForm() {
-  const [formData, setFormData] = useState<Incident>(initialState);
+  const [formData, setFormData] = useState<IncidentInput>(initialState);
+  const [createIncident, { data }] = useMutation(CREATE_INCIDENT_MUTATION);
 
-  const { location: { state: { location } } } = useHistory();
+  const {
+    location: {
+      state: { location, anomaly_id }
+    },
+  } = useHistory();
 
   useEffect(() => {
-  
-  }, [formData]);
+    console.log({ ...formData, ...location, anomaly_id });
+  }, [formData,data]);
 
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
-          <CustomForm<Incident>
+          <CustomForm<IncidentInput>
             fields={incidentsFieldsMap}
             validationSchema={INCIDENT_SCHEMA}
             handleChanges={setFormData}
-            prevData={ formData }
+            prevData={formData}
           />
+          <button
+            onClick={() =>
+              createIncident({
+                variables: { input: { ...formData, ...location, anomaly_id } }
+              })
+            }
+          >
+            Comprobar
+          </button>
         </Column>
 
         <Column width={8}>
-          <div className="m-5"><Page incident={formData} numPage={1}/></div>
+          <div className="m-5">
+            {<Page incident={formData} numPage={1} />}
+          </div>
         </Column>
       </Row>
     </Grid>
   );
 }
-
 
 /*
 <CustomForm
