@@ -4,9 +4,11 @@ import ReactMapboxGl, { Layer, Feature, Image, Popup } from "react-mapbox-gl";
 import { IncidentsMapProps } from "../../props/Anomalies";
 import { Button, Icon } from "semantic-ui-react";
 import markerIcon from "../../../../assets/icons/ovni.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const private_key = "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
+const private_key: string =
+  "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
+const api_url: string = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const Map = ReactMapboxGl({
   accessToken: private_key
 });
@@ -14,8 +16,7 @@ const Map = ReactMapboxGl({
 function IncidentsMap({ point }: IncidentsMapProps) {
   const { lat, lng } = point;
   const [popupProps, setPopupPros] = useState<any>({
-    visible: false,
-    coords: {}
+    visible: false, location: {}
   });
 
   return (
@@ -28,14 +29,16 @@ function IncidentsMap({ point }: IncidentsMapProps) {
       onDblClick={async (m: unknown, e: any) => {
         const { lat, lng } = e.lngLat;
         const coords = { lat, lng };
-        setPopupPros({ visible: true, coords });
+        const place = await getPlaceByCoords(coords);
+        const location = { coords, place };
+        setPopupPros({ visible: true, location });
       }}
       onClick={() => setPopupPros({ ...popupProps, visible: false })}
     >
       <Image id={"ufo"} url={markerIcon} options={{ width: "90px" }} />
 
       {popupProps.visible && (
-        <Popup coordinates={[popupProps.coords.lng, popupProps.coords.lat]}>
+        <Popup coordinates={[popupProps.location.coords.lng, popupProps.location.coords.lat]}>
           <Button.Group>
             <Button
               onClick={() => setPopupPros({ ...popupProps, visible: false })}
@@ -43,16 +46,17 @@ function IncidentsMap({ point }: IncidentsMapProps) {
               Cancelar
             </Button>
             <Button.Or text="<>" />
-            <Link to={{
-              pathname: '/form',
-              state: { location: popupProps.coords }
-            }}>
-            <Button positive>
-              <Icon name="add" color="grey" />
-              Incidente
-            </Button>
+            <Link
+              to={{
+                pathname: "/form",
+                state: { location: popupProps.location }
+              }}
+            >
+              <Button positive>
+                <Icon name="add" color="grey" />
+                Incidente
+              </Button>
             </Link>
-            
           </Button.Group>
         </Popup>
       )}
@@ -71,5 +75,20 @@ const mapStyles = {
   left: "5%",
   borderRadius: "1.5%"
 };
+
+
+function getPlaceByCoords(coords: any): string {
+  const location: any = fetch(`${api_url}${coords.lng},${coords.lat}.json?access_token=${private_key}`);
+  
+  const response: string = location.then(async(res: any) =>
+    await res.text().then(((res: any) => {
+      let place = JSON.parse(res).features[0].place_name;
+      let city = JSON.parse(res).features[3].text;
+      place = place.split(',')[0];
+      return `${place}, ${city}`;
+    })));
+
+    return response;
+}
 
 export default IncidentsMap;

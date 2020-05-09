@@ -2,7 +2,7 @@ import IncidentsPaperContainer from '../modules/Incidents/containers/IncidentsPa
 import ResearcherListContainer from '../modules/Researchers/containers/Researcherlist/ResearcherList.container';
 import AnomaliesListContainer from '../modules/Anomalies/containers/AnomaliesList/AnomaliesList.container';
 import AnomalyDetailContainer from '../modules/Anomalies/containers/AnomalyDetail.container';
-import FormularioIncidentes from '../modules/Incidents/components/Form/FormularioIncidentes';
+import IncidentsForm from '../modules/Incidents/components/Form/IncidentsForm';
 
 const routes = [
     {
@@ -23,7 +23,7 @@ const routes = [
     },
     {
         path: '/form',
-        component: FormularioIncidentes
+        component: IncidentsForm
     }
     
 ]

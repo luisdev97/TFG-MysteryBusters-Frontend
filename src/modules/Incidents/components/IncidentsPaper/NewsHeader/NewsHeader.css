@@ -7,11 +7,12 @@
   padding-top: 1.5%;
   margin-top: 1%;
   margin-bottom: 2%;
-  
+  color: rgba(44, 41, 41, 0.849);
 }
 
-
 .PaperSubHead {
+  color: rgba(44, 41, 41, 0.849);
+
   text-transform: uppercase;
   border-bottom: 2px solid #2f2f2f;
   border-top: 2px solid #2f2f2f;

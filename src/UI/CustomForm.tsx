@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
 import { CustomFormProps } from './props';
 
-export default function CustomForm({ fields, validationSchema, handleChanges }: CustomFormProps) {
+export default function CustomForm<T>({ fields, validationSchema, handleChanges }: CustomFormProps<T>) {
     const { errors, register, handleSubmit, watch } = useForm({ validationSchema });
     const onSubmit = (data: any) => console.log(data);
     const watchAllFields = watch();

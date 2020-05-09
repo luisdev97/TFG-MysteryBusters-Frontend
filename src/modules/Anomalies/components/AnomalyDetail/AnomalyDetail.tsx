@@ -10,7 +10,8 @@ function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
   const { incidents, description, creator, type } = anomaly;
   const [locationCoords, setLocationCoords] = useState<LocationType>({
     lng: -5.9818,
-    lat: 37.3565
+    lat: 37.3565,
+    place: 'Estadio Benito Villamarín, Sevilla'
   });
 
   return (
