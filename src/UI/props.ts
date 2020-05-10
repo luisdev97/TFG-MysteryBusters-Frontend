@@ -8,5 +8,6 @@ export type CustomFormProps<T>= {
     handleChanges: Dispatch<SetStateAction<any>>;
     prevData: T
     aditionalClasses?: string;
+    mutation: Function
   };
   

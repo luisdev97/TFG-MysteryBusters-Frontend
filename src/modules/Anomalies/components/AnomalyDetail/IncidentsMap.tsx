@@ -28,9 +28,8 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
       className="map-container"
       onDblClick={async (m: unknown, e: any) => {
         const { lat, lng } = e.lngLat;
-        const coords = { lat, lng };
-        const place = await getPlaceByCoords(coords);
-        const location = { coords, place };
+        const place = await getPlaceByCoords({ lat, lng });
+        const location = { lat, lng, place };
         setPopupPros({ visible: true, location });
       }}
       onClick={() => setPopupPros({ ...popupProps, visible: false })}
@@ -38,7 +37,7 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
       <Image id={"ufo"} url={markerIcon} options={{ width: "90px" }} />
 
       {popupProps.visible && (
-        <Popup coordinates={[popupProps.location.coords.lng, popupProps.location.coords.lat]}>
+        <Popup coordinates={[popupProps.location.lng, popupProps.location.lat]}>
           <Button.Group>
             <Button
               onClick={() => setPopupPros({ ...popupProps, visible: false })}
