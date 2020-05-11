@@ -6,20 +6,19 @@
   font-size: 1.2em !important;
   /*overflow: scroll;*/
   color: #555;
-  padding: 0 !important;
   width: 500px;
   font-family: courier monospace !important;
-  border: 1px solid #dedede !important;
+  border: 2px solid #dedede !important;
  
 }
 
 .incident-marker {
-  padding: 1% 0 !important;
   border-bottom: 1px dotted #ccc;
   text-indent: 8% !important;
   height: auto;
-  padding: 10px !important;
+  padding: 2.3% !important;
   text-transform: capitalize;
+
 }
 
 .inc-marker-text {
@@ -28,6 +27,7 @@
 
 .incident-marker:hover {
   background-color: #f0f0f0;
+  transition: all 0.2s;
   -webkit-transition: all 0.2s;
   -moz-transition:    all 0.2s;
   -ms-transition:     all 0.2s;
@@ -38,12 +38,16 @@
   border-right: 1px solid #ffaa9f;
   width: 4px;
   float: left;
-  height: 79.9%;
-  margin-left: 40px;
+  height: 79.7%;
+  margin-left: 45px;
   position: absolute
 }
-.incident-marker:not(:first-of-type) {
-  margin-top: 1%;
+
+
+.delete-incident-confirm {
+  left: 50% !important;
+  top: 35% !important;
+  height: 30%;
 }
 
 

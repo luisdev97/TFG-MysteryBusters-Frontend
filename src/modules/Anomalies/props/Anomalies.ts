@@ -13,20 +13,22 @@ export type AnomalyItemProps = {
 
 export type AnomalyDetailProps = {
     anomaly: Anomaly;
-}
-
-export type IncidentsMapProps = {
-    point: LocationType;
-    anomaly_id: number;
+    mutation: Function;
 }
 
 export type IncidentsMarkerProps = {
     incidents: Incident[];
     handleChangeLocation: Dispatch<SetStateAction<LocationType>>;
-
+    mutation: Function;
 }
 
 export type IncidentMarkerProps = {
     incident: Incident;
     handleChangeLocation: Dispatch<SetStateAction<LocationType>>;
+    mutation: Function;
+}
+
+export type IncidentsMapProps = {
+    point: LocationType;
+    anomaly_id: number;
 }

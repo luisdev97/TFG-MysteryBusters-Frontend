@@ -6,7 +6,7 @@ import { Grid, GridColumn as Column, GridRow as Row } from "semantic-ui-react";
 import IncidentsMarker from "./IncidentsMarker/IncidentsMarker";
 import { LocationType } from "../../../Incidents/models/types/LocationType";
 
-function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
+function AnomalyDetail({ anomaly, mutation }: AnomalyDetailProps) {
   const { id, incidents, description, creator, type } = anomaly;
   const [locationCoords, setLocationCoords] = useState<LocationType>({
     lng: -5.9818,
@@ -30,6 +30,7 @@ function AnomalyDetail({ anomaly }: AnomalyDetailProps) {
           <IncidentsMarker
             incidents={incidents}
             handleChangeLocation={setLocationCoords}
+            mutation={mutation}
           />
         </Column>
       </Row>

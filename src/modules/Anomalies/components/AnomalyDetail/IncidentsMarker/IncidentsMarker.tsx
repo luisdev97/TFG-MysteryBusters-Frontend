@@ -6,7 +6,8 @@ import "./IncidentsMarker.css";
 
 function IncidentsMarker({
   incidents,
-  handleChangeLocation
+  handleChangeLocation,
+  mutation
 }: IncidentsMarkerProps) {
 
   return (
@@ -27,6 +28,7 @@ function IncidentsMarker({
             handleChangeLocation={handleChangeLocation}
             incident={i}
             key={i.id}
+            mutation={mutation}
           />
         ))}
     </List>
