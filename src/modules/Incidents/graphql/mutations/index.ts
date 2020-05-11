@@ -16,11 +16,18 @@ input CreateIncidentInput {
 `
 
 export const CREATE_INCIDENT_MUTATION = gql`
-mutation create($input: CreateIncidentInput!) {
-  createIncident(input: $input) {
-    id
-    title
-    description
+  mutation create($input: CreateIncidentInput!) {
+    createIncident(input: $input) {
+      id
+      title
+      description
+    }
   }
-}
+`
+
+
+export const DELETE_INCIDENT_MUTATION = gql`
+  mutation delete($id: Int!) {
+    deleteIncident(id: $id)
+  }
 `

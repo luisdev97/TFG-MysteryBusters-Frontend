@@ -1,19 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
-import { CustomFormProps } from './props';
-import { watchFile } from "fs";
+import { CustomFormProps } from "./props";
 
-export default function CustomForm<T>({ fields, validationSchema, handleChanges, prevData, aditionalClasses, mutation }: CustomFormProps<T>) {
-  const { errors, register, watch, formState, handleSubmit } = useForm({ validationSchema });
+export default function CustomForm<T>({
+  fields,
+  validationSchema,
+  handleChanges,
+  prevData,
+  aditionalClasses,
+  mutation
+}: CustomFormProps<T>) {
+  const { errors, register, watch, formState, handleSubmit } = useForm({
+    validationSchema
+  });
   const watchedFields = watch(Array.from(formState.dirtyFields));
 
-  function onSubmit (data: any, e: any)  {
+  function onSubmit() {
     mutation(watchedFields);
-  };
+  }
 
   return (
-    <Form 
+    <Form
       className={`bg-dark mt-5 w-50 mx-auto ${aditionalClasses}`}
       size="mini"
       onSubmit={handleSubmit(onSubmit)}
@@ -35,19 +43,14 @@ export default function CustomForm<T>({ fields, validationSchema, handleChanges,
             type={i.type}
             name={i.name}
             ref={register()}
-            onChange={ () => { handleChanges({...prevData, ...watchedFields}) } }
-            className='v-hidden'
+            onChange={() => {
+              handleChanges({ ...prevData, ...watchedFields });
+            }}
+            className="v-hidden"
           />
         </Field>
-
       ))}
       <button type="submit">Confirmar</button>
-
     </Form>
   );
 }
-
-
-
-
-

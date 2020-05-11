@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_INCIDENT_MUTATION } from "../../graphql/mutations/index";
-import { Incident, createIncidentInput } from '../../models/entities/Incidents';
+import { Incident, createIncidentInput } from "../../models/entities/Incidents";
 import { useHistory } from "react-router";
-import IncidentsForm from '../../components/Form/IncidentsForm';
-import { LocationType } from "../../models/types/LocationType";
+import IncidentsForm from "../../components/Form/IncidentsForm";
 
 const initialState: Incident = {
   id: 4,
@@ -25,7 +24,7 @@ const initialState: Incident = {
 };
 
 export default function IncidentsFormContainer() {
-  const [createIncident, { data }] = useMutation(CREATE_INCIDENT_MUTATION);
+  const [createIncident] = useMutation(CREATE_INCIDENT_MUTATION);
   let {
     location: {
       state: { location, anomaly_id }
@@ -33,17 +32,20 @@ export default function IncidentsFormContainer() {
   } = useHistory();
 
   function create(input: any) {
-      const incident: createIncidentInput = { ...input, location, anomaly_id };
-      incident.maxResearchers = Number(incident.maxResearchers);
-      incident.date = incident.date.split("-").reverse().join("/");
-      incident.img = ''
-      
-      createIncident({
-        variables: { input: incident}
-      })
-        .then(data => console.log(data))
-        .then(error => console.log(error));
+    const incident: createIncidentInput = { ...input, location, anomaly_id };
+    incident.maxResearchers = Number(incident.maxResearchers);
+    incident.img = "";
+    incident.date = incident.date
+      .split("-")
+      .reverse()
+      .join("/");
+    
+    createIncident({
+      variables: { input: incident }
+    })
+      .then(data => console.log(data))
+      .then(error => console.log(error));
   }
 
-  return <IncidentsForm initialState={initialState} mutation={create}/>;
+  return <IncidentsForm initialState={initialState} mutation={create} />;
 }
