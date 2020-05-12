@@ -6,6 +6,7 @@ import {
   Confirm
 } from "semantic-ui-react";
 import { IncidentMarkerProps } from "../../../props/Anomalies";
+import { Link } from "react-router-dom";
 
 const IncidentMarker = ({
   incident,
@@ -33,14 +34,10 @@ const IncidentMarker = ({
         content={title || "Avistamiento de Wailor en la casa de zeus"}
         className="inc-marker-text"
       />
+      <Link to={`/form/${id}`}>
+        <Icon name="edit outline" color="orange" link size="large" />
+      </Link>
 
-      <Icon
-        name="edit outline"
-        color="orange"
-        link
-        size="large"
-        
-      />
       <Icon
         name="trash"
         color="red"

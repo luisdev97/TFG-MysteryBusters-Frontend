@@ -22,6 +22,10 @@ const routes = [
         component: AnomaliesListContainer
     },
     {
+        path: '/form/:id',
+        component: IncidentsFormContainer
+    },
+    {
         path: '/form',
         component: IncidentsFormContainer
     }

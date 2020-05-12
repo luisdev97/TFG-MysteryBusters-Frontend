@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ResearcherList.css";
 import { ResearcherListProps } from "../../props/Researcher";
 import ResearcherCard from "../ResearcherCard/ResearcherCard";
 // @ts-ignore
 import Coverflow from "react-coverflow";
+import { Researcher } from "../../models/entities/Researcher";
 
 function ResearcherList({ researchers }: ResearcherListProps) {
+ const [investigadores, setinvestigadores] = useState<Researcher[]>([])
+
+ useEffect(() => {
+   setinvestigadores(researchers)
+ },[researchers])
+
+ function ordenar(){
+  console.log(investigadores.sort());
+ }
   return (
     <div>
       <Coverflow
@@ -20,10 +30,11 @@ function ResearcherList({ researchers }: ResearcherListProps) {
         otherFigureScale={0.8}
         enableHeading={false}
       >
-        {researchers.map(r => (
+        {investigadores.map(r => (
           <ResearcherCard researcher={r} key={r.id} />
         ))}
       </Coverflow>
+      <button onClick={() => ordenar()}>Ordenar</button>
     </div>
   );
 }

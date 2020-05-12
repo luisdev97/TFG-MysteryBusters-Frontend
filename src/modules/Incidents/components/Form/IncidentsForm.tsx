@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, GridColumn as Column, GridRow as Row } from "semantic-ui-react";
 import CustomForm from "../../../../UI/CustomForm";
 import INCIDENT_SCHEMA from "./validation";
@@ -12,6 +12,10 @@ import { IncidentsFormProps } from '../../props/IncidentsForm';
 export default function IncidentsForm({ mutation, initialState }: IncidentsFormProps) {
   const [formData, setFormData] = useState<Incident>(initialState);
 
+  useEffect(() => {
+    setFormData(initialState);
+  },[initialState])
+  
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">

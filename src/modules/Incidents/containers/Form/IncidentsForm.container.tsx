@@ -1,9 +1,10 @@
-import React from "react";
-import { useMutation } from "@apollo/client";
+import React, { useState, useEffect } from "react";
+import { useMutation, useLazyQuery } from "@apollo/client";
 import { CREATE_INCIDENT_MUTATION } from "../../graphql/mutations/index";
-import { Incident, createIncidentInput } from "../../models/entities/Incidents";
-import { useHistory } from "react-router";
+import { Incident, createIncidentInput, updateIncidentInput } from '../../models/entities/Incidents';
+import { useHistory, useParams } from "react-router";
 import IncidentsForm from "../../components/Form/IncidentsForm";
+import { GET_ONE_INCIDENT_QUERY } from '../../graphql/queries/index';
 
 const initialState: Incident = {
   id: 4,
@@ -25,11 +26,29 @@ const initialState: Incident = {
 
 export default function IncidentsFormContainer() {
   const [createIncident] = useMutation(CREATE_INCIDENT_MUTATION);
-  let {
-    location: {
-      state: { location, anomaly_id }
+  const [incident, setIncident] = useState<Incident>(initialState);
+  const { id } = useParams();
+  const [getIncident, { error, data, loading}] = useLazyQuery(GET_ONE_INCIDENT_QUERY, {
+    variables: {
+      id: Number(id)
+    },
+  });
+
+  useEffect(() => {
+    if(id && !data){
+      getIncident();
     }
+    if(!loading && data){
+      setIncident(data.getIncident);
+    }
+  },[data]);
+ 
+  const {
+    location: {
+      state: { location, anomaly_id } = { location: {}, anomaly_id: 1}
+    },
   } = useHistory();
+  
 
   function create(input: any) {
     const incident: createIncidentInput = { ...input, location, anomaly_id };
@@ -47,5 +66,11 @@ export default function IncidentsFormContainer() {
       .then(error => console.log(error));
   }
 
-  return <IncidentsForm initialState={initialState} mutation={create} />;
+
+  function update(id: number, input: updateIncidentInput){
+    console.log('intentando actualizar');
+  }
+  if(loading) return <p>Loading</p>
+  if(error) return <p>Error</p>
+  return <IncidentsForm initialState={ incident } mutation={ !id ? create: update} />;
 }

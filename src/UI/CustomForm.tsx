@@ -2,7 +2,26 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
 import { CustomFormProps } from "./props";
+import { Incident } from "../modules/Incidents/models/entities/Incidents";
 
+
+const inicial = {
+  id: 4,
+  belong_to_anomaly: 2,
+  title: "Este sera el título del incidente",
+  description: "Esta será la descripción del incidente",
+  img:
+    "https://i.pinimg.com/originals/5c/f0/b3/5cf0b3d5ff8328687e751a7f9dffde06.gif",
+  location: {
+    lat: 42,
+    lng: 14,
+    place: "Benito Villamarin, Seviolla"
+  },
+  date: "09/05/2020",
+  time: "12:23",
+  maxResearchers: 8,
+  resolved: false
+};
 export default function CustomForm<T>({
   fields,
   validationSchema,
@@ -11,11 +30,12 @@ export default function CustomForm<T>({
   aditionalClasses,
   mutation
 }: CustomFormProps<T>) {
+  console.log(prevData)
   const { errors, register, watch, formState, handleSubmit } = useForm({
-    validationSchema
+    validationSchema,
+    defaultValues: inicial
   });
   const watchedFields = watch(Array.from(formState.dirtyFields));
-
   function onSubmit() {
     mutation(watchedFields);
   }

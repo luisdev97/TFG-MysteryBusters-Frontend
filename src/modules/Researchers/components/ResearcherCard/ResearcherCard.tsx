@@ -5,6 +5,7 @@ import "./ResearcherCard.css";
 import CustomModal from "./CustomModal/CustomModal";
 
 function ResearcherCard({ researcher }: ResearcherCardProps) {
+  
   const { firstname, lastname, role, competencies, posted_anomalies, assigned_incidents } = researcher;
   const [hover, setHover] = useState(false);
   return (
