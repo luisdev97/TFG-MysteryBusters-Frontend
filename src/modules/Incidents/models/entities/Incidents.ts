@@ -5,7 +5,7 @@ export interface Incident {
     belong_to_anomaly?: any;
     title: string;
     description: string;
-    img: string;
+    img?: string;
     location: LocationType;
     date: string;
     time: string; 

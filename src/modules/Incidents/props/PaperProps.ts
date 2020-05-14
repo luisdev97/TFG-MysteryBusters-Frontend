@@ -24,6 +24,6 @@ export type PageContentProps = {
 }
 
 export type PageImageProps = {
-  img: string;
+  img?: string;
   time: string;
 }

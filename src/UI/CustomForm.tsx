@@ -33,7 +33,16 @@ export default function CustomForm<T>({
   console.log(prevData)
   const { errors, register, watch, formState, handleSubmit } = useForm({
     validationSchema,
-    defaultValues: inicial
+    defaultValues: (function(){ 
+      let objeto = {...prevData};
+      Object.defineProperties(objeto, {
+        'img': {
+          value: null,
+          writable: false
+        }
+      })
+      return objeto;
+    })()
   });
   const watchedFields = watch(Array.from(formState.dirtyFields));
   function onSubmit() {
