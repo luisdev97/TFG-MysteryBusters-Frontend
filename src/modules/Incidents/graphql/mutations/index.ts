@@ -10,8 +10,8 @@ input CreateIncidentInput {
     location: JSON!
     img: String!
     maxResearchers: Int!
-    date: Date!
-    time: Time!
+    date: String!
+    time: String!
 }
 `
 

@@ -12,23 +12,18 @@ function IncidentsMarker({
   mutation
 }: IncidentsMarkerProps) {
   const [filteredIncidents, setfilteredIncidents] = useState<Incident[]>([]);
-  const [unresolved, setUnresolved] = useState<boolean>(false);
+  const [onlyAvailables, setOnlyAvailables] = useState<boolean>(false);
 
-  function filterResolved(unfilteredIncidents: Incident[]){
-    let devuelve = [...filteredIncidents].filter(i => i.resolved === true);
-    
-    console.log(devuelve);
-    setfilteredIncidents(devuelve);
-    console.log(filteredIncidents);
-    
+  function filterAvailables(unfilteredIncidents: Incident[]): Incident[]{
+    return [...filteredIncidents].filter(i => !i.resolved);
   }
 
   useEffect(() => {
-    if(unresolved){
-      filterResolved(incidents);
-    }
-    setfilteredIncidents(incidents)
-  },[incidents, unresolved]);
+    if(!onlyAvailables)
+      setfilteredIncidents(incidents)
+    else
+      setfilteredIncidents(filterAvailables(incidents))
+  },[incidents, onlyAvailables]);
 
   return (
     <>
@@ -52,7 +47,7 @@ function IncidentsMarker({
             />
           ))}
       </List>
-      <FilterIncidents setUnresolved={setUnresolved}/>
+      <FilterIncidents setAvailables={setOnlyAvailables}/>
     </>
   );
 }

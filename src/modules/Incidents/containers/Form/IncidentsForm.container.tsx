@@ -10,7 +10,7 @@ const initialState: Incident = {
   id: 4,
   belong_to_anomaly: 2,
   title: "Este sera el título del incidente",
-  description: "Esta será la descripción del incidente",
+  description: "7p8)hNmt7NPY7cTr2!hD(e}e[aV[A3$[L&gzqxcCFR8h5{k;y+aMyzi/=#g%Q4n)mf+d_Zea+XAV!GtAy983Gm#Rmymt@M+5t@BL;rr)K8:F)j:;hxiwSn_XL:fP;E5TR]YNff2S)/HiecBxVS7$ic]vV%6x24#EDY#QL,?j2f(9)a4N5a7;#QRP)PqtYn5wP(b@!u8&yn9vBSN?{LqFCw7-X8[]x;?$77nnNcrp!bE",
   img:
     "https://i.pinimg.com/originals/5c/f0/b3/5cf0b3d5ff8328687e751a7f9dffde06.gif",
   location: {
@@ -20,7 +20,7 @@ const initialState: Incident = {
   },
   date: "09/05/2020",
   time: "12:23",
-  maxResearchers: 8,
+  maxResearchers: 3,
   resolved: false
 };
 
@@ -48,21 +48,23 @@ export default function IncidentsFormContainer() {
       state: { location, anomaly_id } = { location: {}, anomaly_id: 1}
     },
   } = useHistory();
+  const history = useHistory();
   
 
   function create(input: any) {
     const incident: createIncidentInput = { ...input, location, anomaly_id };
     incident.maxResearchers = Number(incident.maxResearchers);
     incident.img = "";
+  
+    console.log(incident)
     incident.date = incident.date
       .split("-")
       .reverse()
       .join("/");
-    
     createIncident({
       variables: { input: incident }
     })
-      .then(data => console.log(data))
+      .then(data => { console.log(data); history.push(`/anomalies/${anomaly_id}`) } )
       .then(error => console.log(error));
   }
 
@@ -70,7 +72,8 @@ export default function IncidentsFormContainer() {
   function update(id: number, input: updateIncidentInput){
     console.log('intentando actualizar');
   }
+
   if(loading) return <p>Loading</p>
   if(error) return <p>Error</p>
-  return <IncidentsForm initialState={ incident } mutation={ !id ? create: update} />;
+  return <IncidentsForm initialState={ initialState } mutation={ id ? update : create} />;
 }

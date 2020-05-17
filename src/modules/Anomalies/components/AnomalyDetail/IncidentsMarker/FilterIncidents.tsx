@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import { Form, Radio } from 'semantic-ui-react';
-export default function FilterIncidents({ setUnresolved }: any) {
-    const [selectRadio, setSelectRadio] = useState<string>('all');
+import React, { useState, useEffect } from "react";
+import { Form, Radio } from "semantic-ui-react";
+export default function FilterIncidents({ setAvailables }: any) {
+  const [onlyAvailables, setOnlyAvailables] = useState<boolean>(false);
 
-    useEffect(() => {
-        if(selectRadio === 'all')
-            setUnresolved(false)
-        else
-        setUnresolved(true)
-    },[selectRadio]);
+  useEffect(() => {
+    setAvailables(onlyAvailables);
+  }, [onlyAvailables]);
 
-    return (
-        <Form className='bg-white mx-auto w-75 corner p-2 border border-secondary' style={{borderRadius: '15px'}}>
-        <Form.Field className='d-inline'>
-          <Radio
-            className='mt-2'
-            label='Todos'
-            name='radioGroup'
-            value='all'
-            checked={selectRadio === 'all'}
-            onChange={ () => setSelectRadio('all')}
-            toggle
-          />
-        </Form.Field>
+  return (
+    <Form
+      className="bg-dark mx-auto w-75 corner p-2 border border-secondary"
+      style={{ borderRadius: "15px" }}
+    >
+      <Form.Field className="mx-auto  w-75">
+        <Radio
+          className="mt-1"
+          label="Mostrar solo casos no resueltos"
+          name="radioGroup"
+          value="all"
+          checked={onlyAvailables}
+          onChange={() => setOnlyAvailables(!onlyAvailables)}
+          toggle
+        />
+      </Form.Field>
+      {/* 
         <Form.Field className='d-inline ml-4'>
           <Radio
             label='No resueltos'
@@ -43,8 +44,7 @@ export default function FilterIncidents({ setUnresolved }: any) {
             onChange={ () => setSelectRadio('disponible')}
             toggle
           />
-        </Form.Field>
-
-      </Form>
-    )
+        </Form.Field>*/}
+    </Form>
+  );
 }
