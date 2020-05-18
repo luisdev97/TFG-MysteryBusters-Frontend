@@ -3,17 +3,30 @@ import { gql } from '@apollo/client';
 
 
 const IncidentInput = gql`
-input CreateIncidentInput {
-    anomaly_id: Int!
-    title: String!
-    description: String!
-    location: JSON!
-    img: String!
-    maxResearchers: Int!
-    date: String!
-    time: String!
-}
+  input CreateIncidentInput {
+      anomaly_id: Int!
+      title: String!
+      description: String!
+      location: JSON!
+      img: String!
+      maxResearchers: Int!
+      date: String!
+      time: String!
+  }
 `
+
+export const UpdateIncidentInput = gql`
+  input CreateIncidentInput {
+      title: String
+      description: String
+      location: JSON
+      img: String
+      maxResearchers: Int
+      date: String
+      time: String
+  }
+`
+
 
 export const CREATE_INCIDENT_MUTATION = gql`
   mutation create($input: CreateIncidentInput!) {

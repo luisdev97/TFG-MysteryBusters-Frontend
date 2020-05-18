@@ -56,7 +56,6 @@ export default function IncidentsFormContainer() {
     incident.maxResearchers = Number(incident.maxResearchers);
     incident.img = "";
   
-    console.log(incident)
     incident.date = incident.date
       .split("-")
       .reverse()
@@ -64,7 +63,7 @@ export default function IncidentsFormContainer() {
     createIncident({
       variables: { input: incident }
     })
-      .then(data => { console.log(data); history.push(`/anomalies/${anomaly_id}`) } )
+      .then(data => { console.log(data); history.push(`/anomalies/${anomaly_id}`) })
       .then(error => console.log(error));
   }
 
