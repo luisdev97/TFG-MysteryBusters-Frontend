@@ -26,6 +26,9 @@ export const GET_ONE_ANOMALY_QUERY = gql`
         getAnomaly(id: $id ){
             ...requiredFields
             incidents {
+                belong_to_anomaly {
+                    id
+                }
                 id
                 title
                 maxResearchers

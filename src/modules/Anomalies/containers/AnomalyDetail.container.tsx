@@ -13,8 +13,7 @@ function AnomalyDetailContainer() {
   const { error, loading, data } = useQuery(GET_ONE_ANOMALY_QUERY, {
     variables: {
       id: Number(id)
-    },
-    fetchPolicy: "cache-and-network"
+    }
   });
 
   function deleteOneIncident(id: number) {

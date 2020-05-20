@@ -1,6 +1,6 @@
 .incidents-marker-list {
   background-color: #f5f5f5;
-  margin-top: 15% !important;
+  margin-top: 12% !important;
   height: 80%;
   width: 95% !important;
   font-size: 1.2em !important;
@@ -53,5 +53,7 @@
 
 .filter-incidents input {
   margin-left: 100px;
+  margin-bottom: 10px !important;
   width: 75;
+  height: 10px !important;
 }

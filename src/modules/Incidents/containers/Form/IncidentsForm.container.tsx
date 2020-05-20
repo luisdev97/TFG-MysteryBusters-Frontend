@@ -69,10 +69,11 @@ export default function IncidentsFormContainer() {
 
 
   function update(id: number, input: updateIncidentInput){
-    console.log('intentando actualizar');
+    console.log(id);
+    console.log(input);
   }
 
   if(loading) return <p>Loading</p>
   if(error) return <p>Error</p>
-  return <IncidentsForm initialState={ initialState } mutation={ id ? update : create} />;
+  return <IncidentsForm initialState={ id ? incident : {} as Incident } mutation={ id ? update : create } />;
 }

@@ -9,13 +9,13 @@ export default function FilterIncidents({ setAvailables }: any) {
 
   return (
     <Form
-      className="bg-dark mx-auto w-75 corner p-2 border border-secondary"
-      style={{ borderRadius: "15px" }}
+      className="bg-dark mx-auto w-75 corner border border-secondary mb-5"
+      style={{ borderRadius: "15px", height: "60px" }}
     >
-      <Form.Field className="mx-auto  w-75">
+      <Form.Field className="mx-auto w-75">
         <Radio
-          className="mt-1"
           label="Mostrar solo casos no resueltos"
+          className='ml-5 mb-2'
           name="radioGroup"
           value="all"
           checked={onlyAvailables}
@@ -23,28 +23,6 @@ export default function FilterIncidents({ setAvailables }: any) {
           toggle
         />
       </Form.Field>
-      {/* 
-        <Form.Field className='d-inline ml-4'>
-          <Radio
-            label='No resueltos'
-            name='radioGroup'
-            value='unresolved'
-            checked={selectRadio === 'unresolved'}
-            onChange={ () => setSelectRadio('unresolved')}
-            toggle
-          />
-        </Form.Field>
-
-        <Form.Field className='d-inline ml-4'>
-          <Radio
-            label='Plazas disponibles'
-            name='radioGroup'
-            value='disponible'
-            checked={selectRadio === 'disponible'}
-            onChange={ () => setSelectRadio('disponible')}
-            toggle
-          />
-        </Form.Field>*/}
     </Form>
   );
 }

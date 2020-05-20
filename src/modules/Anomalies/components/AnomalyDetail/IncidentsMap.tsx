@@ -70,7 +70,7 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
 const mapStyles = {
   height: "50%",
   width: "90%",
-  top: "15%",
+  top: "10%",
   left: "5%",
   borderRadius: "1.5%"
 };

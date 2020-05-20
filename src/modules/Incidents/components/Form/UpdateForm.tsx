@@ -1,15 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
- import { Form, FormField as Field, Label } from "semantic-ui-react";
-import { CREATE_INCIDENT_SCHEMA } from './validation';
+import { UPDATE_INCIDENT_SCHEMA } from "./validation";
+import { Form, FormField as Field, Label } from "semantic-ui-react";
+import { useParams } from "react-router";
 
-export default function CreateIncidentForm({ mutation }: any) {
+export default function UpdateForm({ initialState, mutation }: any) {
   const { register, handleSubmit, errors } = useForm({
-    validationSchema: CREATE_INCIDENT_SCHEMA
+    validationSchema: UPDATE_INCIDENT_SCHEMA,
+    defaultValues: (function(){
+      let validState = {...initialState};
+      delete validState.img;
+      return validState;
+    })()
   });
-
+  const { id } = useParams();
   function onSubmit(data: any) {
-    mutation(data);
+    mutation(id, initialState);
   }
 
   function checkError(title: string) {
@@ -27,7 +33,7 @@ export default function CreateIncidentForm({ mutation }: any) {
       onSubmit={handleSubmit(onSubmit)}
       className="bg-info w-75 mx-auto mt-5"
     >
-      <Field width={7} error className="mx-auto">
+      <Field width={7} className="mx-auto">
         {checkError("title")}
         <input name="title" ref={register} />
       </Field>

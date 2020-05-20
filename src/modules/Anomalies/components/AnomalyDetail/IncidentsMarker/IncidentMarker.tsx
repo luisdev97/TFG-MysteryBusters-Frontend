@@ -14,7 +14,8 @@ const IncidentMarker = ({
   mutation
 }: IncidentMarkerProps) => {
   const [visibleConfirm, setVisibleConfirm] = useState<boolean>(false);
-  const { id, title, location } = incident;
+  const { belong_to_anomaly, id, title, location } = incident;
+  //.const { id: anomaly_id } = belong_to_anomaly;
 
   function deleteIncident(id: number) {
     mutation(id);
@@ -34,9 +35,9 @@ const IncidentMarker = ({
         content={title || "Avistamiento de Wailor en la casa de zeus"}
         className="inc-marker-text"
       />
-
+      <Link to={`/form/${id}`}>
         <Icon name="edit outline" color="orange" link size="large" />
-      
+      </Link>
 
       <Icon
         name="trash"

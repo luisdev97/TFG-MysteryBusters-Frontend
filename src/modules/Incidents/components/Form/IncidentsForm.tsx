@@ -6,12 +6,14 @@ import "./IncidentsForm.css";
 import { IncidentsFormProps } from "../../props/IncidentsForm";
 import CreateForm from "./CreateForm";
 import "./IncidentsForm.css";
+import UpdateForm from "./UpdateForm";
 
 export default function IncidentsForm({
   mutation,
   initialState
 }: IncidentsFormProps) {
   const [formData, setFormData] = useState<Incident>(initialState);
+  console.log(initialState);
 
   useEffect(() => {
     setFormData(initialState);
@@ -21,7 +23,11 @@ export default function IncidentsForm({
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
         <Column width={8}>
-          <CreateForm mutation={mutation} initialState={initialState} />
+          {Object.keys(initialState).length === 0 ? (
+            <CreateForm mutation={mutation} initialState={initialState} />
+          ) : (
+            <UpdateForm mutation={mutation} initialState={initialState} />
+          )}
         </Column>
 
         <Column width={8}>
