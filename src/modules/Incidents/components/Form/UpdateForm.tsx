@@ -15,7 +15,8 @@ export default function UpdateForm({ initialState, mutation }: any) {
   });
   const { id } = useParams();
   function onSubmit(data: any) {
-    mutation(id, initialState);
+    const input = {...initialState}
+    mutation(id, Object.assign({},input));
   }
 
   function checkError(title: string) {

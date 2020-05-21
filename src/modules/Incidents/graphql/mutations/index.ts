@@ -16,14 +16,24 @@ const IncidentInput = gql`
 `
 
 export const UpdateIncidentInput = gql`
-  input CreateIncidentInput {
+  input UpdateIncidentInput {
       title: String
       description: String
-      location: JSON
       img: String
       maxResearchers: Int
       date: String
       time: String
+  }
+`
+
+
+export const UPDATE_INCIDENT_MUTATION = gql`
+  mutation update($id: ID!, $input: UpdateIncidentInput!) {
+    updateIncident(id: $id, input: $input) {
+      id
+      title
+      description
+    }
   }
 `
 
@@ -37,7 +47,6 @@ export const CREATE_INCIDENT_MUTATION = gql`
     }
   }
 `
-
 
 export const DELETE_INCIDENT_MUTATION = gql`
   mutation delete($id: Int!) {
