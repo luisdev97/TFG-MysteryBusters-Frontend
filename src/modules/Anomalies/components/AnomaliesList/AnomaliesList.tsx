@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AnomaliesListProps } from "../../props/Anomalies";
 import {
   List,
@@ -13,47 +13,32 @@ import {
 } from "semantic-ui-react";
 import AnomalyItem from "./AnomalyItem";
 import "./AnomaliesList.css";
+import { useForm } from 'react-hook-form';
 
 const style = {
   borderRadius: 0,
-  opacity: 0.7,
+  opacity: 1,
   padding: "2em"
 };
 
-const opciones = [
+const options = [
   { key: "af", value: "af", text: "Afghanistan" },
   { key: "ax", value: "ax", text: "Aland Islands" },
-  { key: "al", value: "al", text: "Albania" },
-  { key: "dz", value: "dz", text: "Algeria" },
-  { key: "as", value: "as", text: "American Samoa" },
-  { key: "ad", value: "ad", text: "Andorra" },
-  { key: "ao", value: "ao", text: "Angola" },
-  { key: "ai", value: "ai", text: "Anguilla" },
-  { key: "ag", value: "ag", text: "Antigua" },
-  { key: "ar", value: "ar", text: "Argentina" },
-  { key: "am", value: "am", text: "Armenia" },
-  { key: "aw", value: "aw", text: "Aruba" },
-  { key: "au", value: "au", text: "Australia" },
-  { key: "at", value: "at", text: "Austria" },
-  { key: "az", value: "az", text: "Azerbaijan" },
-  { key: "bs", value: "bs", text: "Bahamas" },
-  { key: "bh", value: "bh", text: "Bahrain" },
-  { key: "bd", value: "bd", text: "Bangladesh" },
-  { key: "bb", value: "bb", text: "Barbados" },
-  { key: "by", value: "by", text: "Belarus" },
-  { key: "be", value: "be", text: "Belgium" },
-  { key: "bz", value: "bz", text: "Belize" },
-  { key: "bj", value: "bj", text: "Benin" }
 ];
 
 function CreateAnomalyForm() {
+  const { errors, register, watch } = useForm<{ type: string, description: string }>();
+  const watchedFields = watch();
   return (
     <Form>
+      <Button onClick={ () => console.log(watchedFields)}>Comprobar</Button>
+      <select name="type" ref={register}>
+        <option value="-1">Selecciona un tipo</option>
+        {options.map(o => <option value={o.value} key={o.text}>{o.text}</option>)}
+        
+      </select>
       <Field>
-        <Input name="text" type="text" />
-      </Field>
-      <Field>
-        <Select options={opciones} />
+        <input name="description" type="text" placeholder="description" ref={register()}/>
       </Field>
       <Field>
         <Input type="submit" />
@@ -61,18 +46,23 @@ function CreateAnomalyForm() {
     </Form>
   );
 }
+
 function AnomaliesList({ anomalies }: AnomaliesListProps) {
+  const [visibleForm, setVisibleForm] = useState<boolean>(false);
   return (
-    <List className="w-50 bg-error mx-auto mt-5 pt-5 pb-5">
+    <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
       <Popup
-        trigger={<Icon name="add" size="big" color="olive" className="ml-2" />}
+        trigger={
+          <Button className="anomalyPopup-trigger" color="vk">
+            Crear anomalía
+          </Button>
+        }
         content={<CreateAnomalyForm />}
         style={style}
         inverted
         on="click"
-        className="mx-auto"
+        position="top center"
       />
-      <Label>Agregar anomalía</Label>
       {anomalies.map(a => (
         <AnomalyItem key={a.id} anomaly={a} />
       ))}

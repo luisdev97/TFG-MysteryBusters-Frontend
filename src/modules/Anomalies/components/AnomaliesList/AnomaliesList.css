@@ -1,7 +1,11 @@
 .a-item-header {
-    font-size: 1.6em !important;
+  font-size: 1.6em !important;
 }
 
 .a-item-meta {
-    font-size: 1.2em !important;
+  font-size: 1.2em !important;
+}
+
+.anomalyPopup-trigger {
+    margin-left: 43% !important;
 }
