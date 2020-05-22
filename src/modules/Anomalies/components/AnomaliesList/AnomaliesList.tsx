@@ -13,7 +13,8 @@ import {
 } from "semantic-ui-react";
 import AnomalyItem from "./AnomalyItem";
 import "./AnomaliesList.css";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import { ANOMALY_VALIDATION_SCHEMA } from "../Form/validation";
 
 const style = {
   borderRadius: 0,
@@ -23,22 +24,48 @@ const style = {
 
 const options = [
   { key: "af", value: "af", text: "Afghanistan" },
-  { key: "ax", value: "ax", text: "Aland Islands" },
+  { key: "ax", value: "ax", text: "Aland Islands" }
 ];
 
 function CreateAnomalyForm() {
-  const { errors, register, watch } = useForm<{ type: string, description: string }>();
+  const { errors, register, watch, handleSubmit } = useForm({
+    validationSchema: ANOMALY_VALIDATION_SCHEMA
+  });
   const watchedFields = watch();
+
+  function checkError(title: string) {
+    return (
+      errors.hasOwnProperty(title) && (
+        <Label basic color="red" pointing="below">
+          {errors[title].message}
+        </Label>
+      )
+    );
+  }
+
+  function onSubmit(data: any) {
+    console.log(data);
+  }
+
   return (
-    <Form>
-      <Button onClick={ () => console.log(watchedFields)}>Comprobar</Button>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      {checkError("type")}
       <select name="type" ref={register}>
         <option value="-1">Selecciona un tipo</option>
-        {options.map(o => <option value={o.value} key={o.text}>{o.text}</option>)}
-        
+        {options.map(o => (
+          <option value={o.value} key={o.text}>
+            {o.text}
+          </option>
+        ))}
       </select>
       <Field>
-        <input name="description" type="text" placeholder="description" ref={register()}/>
+        {checkError("description")}
+        <input
+          name="description"
+          type="text"
+          placeholder="description"
+          ref={register()}
+        />
       </Field>
       <Field>
         <Input type="submit" />
