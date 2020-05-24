@@ -7,5 +7,10 @@
 }
 
 .anomalyPopup-trigger {
-    margin-left: 43% !important;
+  margin-left: 43% !important;
+}
+
+.anomalies-pagination {
+  margin-left: 32% !important;
+  margin-top: 5% !important;
 }

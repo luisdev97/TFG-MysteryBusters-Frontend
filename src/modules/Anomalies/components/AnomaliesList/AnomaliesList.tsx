@@ -21,7 +21,7 @@ function AnomaliesList({
 }: AnomaliesListProps) {
   const [visibleForm, setVisibleForm] = useState<boolean>(false);
   const pagination = usePagination<Anomaly>(anomalies, 2);
-
+  
   return (
     <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
       <Popup
@@ -44,7 +44,7 @@ function AnomaliesList({
         position="top center"
       />
       <Pagination
-        className=''
+        className='anomalies-pagination bg-dark text-white'
         defaultActivePage={1}
         totalPages={anomalies.length / 2}
         onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}

@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_ANOMALIES_QUERY } from "../../graphql/queries/anomalies";
 import { Anomaly } from "../../models/entities/Anomaly";
 import AnomaliesList from "../../components/AnomaliesList/AnomaliesList";
+import { UPDATE_ANOMALY_MUTATION } from '../../graphql/mutations/anomalies';
 import {
   CREATE_ANOMALY_MUTATION,
   DELETE_ANOMALY_MUTATION
@@ -11,6 +12,7 @@ import {
 function AnomaliesListContainer() {
   const { error, loading, data } = useQuery(GET_ANOMALIES_QUERY);
   const [create] = useMutation(CREATE_ANOMALY_MUTATION);
+  const [update] = useMutation(UPDATE_ANOMALY_MUTATION);
   const [remove] = useMutation(DELETE_ANOMALY_MUTATION);
   const [anomalies, setAnomalies] = useState<Anomaly[]>([]);
 
@@ -32,7 +34,7 @@ function AnomaliesListContainer() {
           setAnomalies(updatedList);
         }
       })
-      .then(error => console.log(error));
+      .catch(error => console.log(error));
   }
 
   function createAnomaly(input: any) {
@@ -41,7 +43,16 @@ function AnomaliesListContainer() {
         let updatedList = [...anomalies, data.data.createAnomaly];
         setAnomalies(updatedList);
       })
-      .then(error => console.log(error));
+      .catch(error => console.log(error));
+  }
+
+  function updateAnomaly(id: number, input: any){
+    update({ variables: {
+      id, input
+    }}).then(data => {
+        let updatedList = anomalies.map(anomaly => anomaly.id != data.id ? anomaly : data);
+        setAnomalies(updatedList);
+    }).catch(error => console.log(error));
   }
 
   if (loading) return <p>Loading :</p>;
@@ -52,7 +63,7 @@ function AnomaliesListContainer() {
       anomalies={anomalies}
       create={createAnomaly}
       remove={deleteAnomaly}
-      update={deleteAnomaly}
+      update={updateAnomaly}
     />
   );
 }
