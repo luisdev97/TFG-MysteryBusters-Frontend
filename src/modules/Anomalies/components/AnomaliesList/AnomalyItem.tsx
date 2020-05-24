@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AnomalyItemProps } from "../../props/Anomalies";
 //import { Link } from "react-router-dom";
 
@@ -15,30 +15,76 @@ import {
 import { Link } from "react-router-dom";
 function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
   const { id, description, type, creator } = anomaly;
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [data, setData] = useState({ description, type });
+
+  function handleChangeMode(e: any){
+    e.preventDefault()
+    setEditMode(!editMode);
+  }
+
+  function handleFocusInput(e: any){
+    e.preventDefault();
+  }
+
+  function handleChange(e: any){
+    const changes = Object.defineProperty({...data}, e.target.name, { value: e.target.value});
+    setData(changes);
+  }
 
   return (
     <ListItem className="pl-2 pr-2 w-75 mx-auto mt-2">
       <Link to={`anomalies/${id}`}>
-      <Card color={"teal"} fluid link={true}>
-        <Content textAlign={"left"} extra={true}>
-          <Image
-            floated="left"
-            size={"small"}
-            src="https://www.w3schools.com/w3css/img_lights.jpg"
-          />
-          <Header content={description} className="mt-1 ml-4 a-item-header" />
-          <Meta
-            content={creator && `${creator.firstname} ${creator.lastname}`}
-            className="ml-4 a-item-meta"
-          />
-          <Segment content={ type.toLocaleUpperCase() } size={'small'} inverted floated={'left'} className="mt-2"/>
-          <Icon className='float-right' name='edit outline' size='big'/>
-          <Icon className='float-right' name='trash alternate' link size='big' onClick={ (e: any) => remove(e, id)}/>
-        </Content>
-        
-      </Card>
+        <Card color={"teal"} fluid link={true}>
+          <Content textAlign={"left"} extra={true}>
+            <Image
+              floated="left"
+              size={"small"}
+              src="https://www.w3schools.com/w3css/img_lights.jpg"
+            />
+            <Header
+              content={
+                editMode ? (
+                  <input
+                    type="text"
+                    name="description"
+                    value={data.description}
+                    onClick={e => handleFocusInput(e)}
+                    onChange={e => handleChange(e)}
+                  />
+                ) : (
+                  description
+                )
+              }
+              className="mt-1 ml-4 a-item-header"
+            />
+            <Meta
+              content={creator && `${creator.firstname} ${creator.lastname}`}
+              className="ml-4 a-item-meta"
+            />
+            <Segment
+              content={type.toLocaleUpperCase()}
+              size={"small"}
+              inverted
+              floated={"left"}
+              className="mt-2"
+            />
+            <Icon
+              className="float-right"
+              name="edit outline"
+              size="big"
+              onClick={(e: any) => handleChangeMode(e)}
+            />
+            <Icon
+              className="float-right"
+              name="trash alternate"
+              link
+              size="big"
+              onClick={(e: any) => remove(e, id)}
+            />
+          </Content>
+        </Card>
       </Link>
-     
     </ListItem>
   );
 }
