@@ -35,11 +35,13 @@ function AnomaliesListContainer() {
       .then(error => console.log(error));
   }
 
-  function createAnomaly(input: any){
-    create({ variables: { input }}).then(data => {
-      let updatedList = [...anomalies, data.data.createAnomaly ];
-      setAnomalies(updatedList);
-    }).then(error => console.log(error));
+  function createAnomaly(input: any) {
+    create({ variables: { input } })
+      .then(data => {
+        let updatedList = [...anomalies, data.data.createAnomaly];
+        setAnomalies(updatedList);
+      })
+      .then(error => console.log(error));
   }
 
   if (loading) return <p>Loading :</p>;

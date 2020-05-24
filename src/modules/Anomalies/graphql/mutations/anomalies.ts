@@ -9,10 +9,25 @@ const createAnomalyInput = gql`
   }
 `
 
+const updateAnomalyInput = gql`
+  input UpdateAnomalyInput {
+      description: String
+      type: String
+  }
+`
+
 
 export const CREATE_ANOMALY_MUTATION = gql`
   mutation create($input: CreateAnomalyInput!) {
     createAnomaly(input: $input) {
+      ...requiredFields
+    }
+  }${REQUIRED_FIELDS}
+`
+
+export const UPDATE_ANOMALY_MUTATION = gql`
+  mutation update($id: Int!, $input: UpdateAnomalyInput!) {
+    updateAnomaly(id: $id, input: $input) {
       ...requiredFields
     }
   }${REQUIRED_FIELDS}
