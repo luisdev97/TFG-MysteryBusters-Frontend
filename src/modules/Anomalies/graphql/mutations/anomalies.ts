@@ -18,8 +18,8 @@ export const CREATE_ANOMALY_MUTATION = gql`
   }
 `
 
-export const DELETE_INCIDENT_MUTATION = gql`
+export const DELETE_ANOMALY_MUTATION = gql`
   mutation delete($id: Int!) {
-    deleteIncident(id: $id)
+    deleteAnomaly(id: $id)
   }
 `

@@ -11,7 +11,7 @@ const style = {
   padding: "2em"
 };
 
-function AnomaliesList({ anomalies, create }: AnomaliesListProps) {
+function AnomaliesList({ anomalies, create, update, remove }: AnomaliesListProps) {
   const [visibleForm, setVisibleForm] = useState<boolean>(false);
   return (
     <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
@@ -28,7 +28,7 @@ function AnomaliesList({ anomalies, create }: AnomaliesListProps) {
         position="top center"
       />
       {anomalies.map(a => (
-        <AnomalyItem key={a.id} anomaly={a} />
+        <AnomalyItem key={a.id} anomaly={a} update={ update } remove={ remove }/>
       ))}
     </List>
   );

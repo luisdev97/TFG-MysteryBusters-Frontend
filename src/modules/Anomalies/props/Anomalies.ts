@@ -6,10 +6,14 @@ import { Dispatch, SetStateAction } from 'react';
 export type AnomaliesListProps = {
     anomalies: Anomaly[];
     create: Function;
+    remove: Function;
+    update: Function;
 }
 
 export type AnomalyItemProps = {
     anomaly: Anomaly;
+    remove: Function;
+    update: Function;
 }
 
 export type AnomalyDetailProps = {
