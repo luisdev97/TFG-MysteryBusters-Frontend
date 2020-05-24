@@ -3,6 +3,7 @@ import React from "react";
 import { ANOMALY_VALIDATION_SCHEMA } from "./validation";
 import { Form, FormField as Field, Input, Label } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
+
 const options = [
   { key: "uf", value: "ufology", text: "UFO" },
   { key: "dm", value: "dark magic", text: "Magia negra" },
@@ -11,7 +12,7 @@ const options = [
   { key: "ap", value: "apparition", text: "Aparición" }
 ];
 
-export default function CreateAnomalyForm({ mutation }: any) {
+export default function CreateAnomalyForm({ mutation, closeForm }: any) {
   const { errors, register, watch, handleSubmit } = useForm({
     validationSchema: ANOMALY_VALIDATION_SCHEMA
   });
@@ -27,11 +28,8 @@ export default function CreateAnomalyForm({ mutation }: any) {
   }
 
   function onSubmit(data: any) {
-    mutation({ 
-        variables: {
-            input: { researcher_id: 4, ...data }
-        }
-    });
+    mutation({ researcher_id: 4, ...data })
+    closeForm();
   }
 
   return (

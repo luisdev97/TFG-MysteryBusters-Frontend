@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 
-const REQUIRED_FIELDS = gql`
+export const REQUIRED_FIELDS = gql`
     fragment requiredFields on Anomaly {
         id
         creator {

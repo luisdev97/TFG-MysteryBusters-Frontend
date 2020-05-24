@@ -13,7 +13,7 @@ import {
   Icon
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-function AnomalyItem({ anomaly }: AnomalyItemProps) {
+function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
   const { id, description, type, creator } = anomaly;
 
   return (
@@ -32,9 +32,8 @@ function AnomalyItem({ anomaly }: AnomalyItemProps) {
             className="ml-4 a-item-meta"
           />
           <Segment content={ type.toLocaleUpperCase() } size={'small'} inverted floated={'left'} className="mt-2"/>
-          <Icon.Group className='float-right'>
-          <Icon name='remove' size='small'/>
-        </Icon.Group>
+          <Icon className='float-right' name='edit outline' size='big'/>
+          <Icon className='float-right' name='trash alternate' link size='big' onClick={ (e: any) => remove(e, id)}/>
         </Content>
         
       </Card>
