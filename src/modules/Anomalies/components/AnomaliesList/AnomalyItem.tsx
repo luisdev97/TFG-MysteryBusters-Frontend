@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { AnomalyItemProps } from "../../props/Anomalies";
 //import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
+import { anomalyTypes } from "../Form/AnomalyTypes";
 
 import {
   ListItem,
@@ -18,18 +20,26 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [data, setData] = useState({ description, type });
 
-  function handleChangeMode(e: any){
-    e.preventDefault()
+  function handleChangeMode(e: any) {
+    e.preventDefault();
     setEditMode(!editMode);
   }
 
-  function handleFocusInput(e: any){
+  function handleFocusInput(e: any) {
     e.preventDefault();
   }
 
-  function handleChange(e: any){
-    const changes = Object.defineProperty({...data}, e.target.name, { value: e.target.value});
+  function handleChange(e: any) {
+    const changes = Object.defineProperty({ ...data }, e.target.name, {
+      value: e.target.value
+    });
     setData(changes);
+  }
+
+  function handleUpdate(e: any, input: any) {
+    e.preventDefault();
+    update(id, input);
+    setEditMode(false);
   }
 
   return (
@@ -58,21 +68,16 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
               }
               className="mt-1 ml-4 a-item-header"
             />
+
             <Meta
               content={creator && `${creator.firstname} ${creator.lastname}`}
               className="ml-4 a-item-meta"
-            />
-            <Segment
-              content={type.toLocaleUpperCase()}
-              size={"small"}
-              inverted
-              floated={"left"}
-              className="mt-2"
             />
             <Icon
               className="float-right"
               name="edit outline"
               size="big"
+              color={editMode ? "black" : "grey"}
               onClick={(e: any) => handleChangeMode(e)}
             />
             <Icon
@@ -82,6 +87,41 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
               size="big"
               onClick={(e: any) => remove(e, id)}
             />
+
+            <Segment
+              content={
+                editMode ? (
+                  <select
+                    name="type"
+                    onClick={e => handleFocusInput(e)}
+                    onChange={e => handleChange(e)}
+                  >
+                    <option value="-1">Selecciona un tipo</option>
+                    {anomalyTypes.map(o => (
+                      <option value={o.value} key={o.text}>
+                        {o.text}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  type.toLocaleUpperCase()
+                )
+              }
+              size={"small"}
+              inverted
+              floated={"left"}
+              className="mt-2"
+            />
+            {editMode && (
+              <Segment
+                size={"small"}
+                inverted
+                floated={"left"}
+                className="mt-2 text-white p-3 m-0"
+                content="GUARDAR CAMBIOS"
+                onClick={(e: any) => handleUpdate(e, data)}
+              />
+            )}
           </Content>
         </Card>
       </Link>

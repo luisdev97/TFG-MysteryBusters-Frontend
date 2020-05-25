@@ -3,14 +3,8 @@ import React from "react";
 import { ANOMALY_VALIDATION_SCHEMA } from "./validation";
 import { Form, FormField as Field, Input, Label } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
+import { anomalyTypes } from './AnomalyTypes';
 
-const options = [
-  { key: "uf", value: "ufology", text: "UFO" },
-  { key: "dm", value: "dark magic", text: "Magia negra" },
-  { key: "ps", value: "possesion", text: "Posesión" },
-  { key: "ts", value: "transmutation", text: "Transmutación" },
-  { key: "ap", value: "apparition", text: "Aparición" }
-];
 
 export default function CreateAnomalyForm({ mutation, closeForm }: any) {
   const { errors, register, watch, handleSubmit } = useForm({
@@ -37,7 +31,7 @@ export default function CreateAnomalyForm({ mutation, closeForm }: any) {
       {checkError("type")}
       <select name="type" ref={register}>
         <option value="-1">Selecciona un tipo</option>
-        {options.map(o => (
+        {anomalyTypes.map(o => (
           <option value={o.value} key={o.text}>
             {o.text}
           </option>

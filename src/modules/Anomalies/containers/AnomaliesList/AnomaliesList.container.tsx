@@ -47,10 +47,12 @@ function AnomaliesListContainer() {
   }
 
   function updateAnomaly(id: number, input: any){
+    console.log(id)
     update({ variables: {
       id, input
     }}).then(data => {
-        let updatedList = anomalies.map(anomaly => anomaly.id != data.id ? anomaly : data);
+        const updatedAnomaly = data.data.updateAnomaly;
+        const updatedList = anomalies.map(anomaly => anomaly.id != id ? anomaly : updatedAnomaly);
         setAnomalies(updatedList);
     }).catch(error => console.log(error));
   }
