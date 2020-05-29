@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Anomaly } from "../modules/Anomalies/models/entities/Anomaly";
 
 function usePagination<T>(data: Array<T> , itemsPerPage: number) {
   

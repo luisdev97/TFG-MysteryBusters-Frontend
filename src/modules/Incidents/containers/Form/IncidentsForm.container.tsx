@@ -13,6 +13,7 @@ import { useHistory, useParams } from "react-router";
 import IncidentsForm from "../../components/Form/IncidentsForm";
 import { GET_ONE_INCIDENT_QUERY } from "../../graphql/queries/index";
 import { isParenthesizedExpression } from "@babel/types";
+import useUpload from "../../../../hooks/useUpload";
 
 const initialState: Incident = {
   id: 4,
@@ -38,6 +39,7 @@ export default function IncidentsFormContainer() {
   const [updateIncident] = useMutation(UPDATE_INCIDENT_MUTATION);
   const [incident, setIncident] = useState<Incident>(initialState);
   const { id } = useParams();
+  const { uploadImage, uploadedImage } = useUpload();
   const [getIncident, { error, data, loading }] = useLazyQuery(
     GET_ONE_INCIDENT_QUERY,
     {
@@ -63,11 +65,12 @@ export default function IncidentsFormContainer() {
   } = useHistory();
   const history = useHistory();
 
-  function create(input: any) {
+  async function create(input: any) {
     const incident: createIncidentInput = { ...input, location, anomaly_id };
     incident.maxResearchers = Number(incident.maxResearchers);
-    incident.img = "";
-
+    const cloudinary_img_url = await uploadImage(incident.img);
+    console.log(cloudinary_img_url);
+    return;
     incident.date = incident.date
       .split("-")
       .reverse()
