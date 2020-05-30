@@ -1,13 +1,24 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
- import { Form, FormField as Field, Label } from "semantic-ui-react";
-import { CREATE_INCIDENT_SCHEMA } from './validation';
+import { Form, FormField as Field, Label } from "semantic-ui-react";
+import { CREATE_INCIDENT_SCHEMA } from "./validation";
+import useUpload from "../../../../hooks/useUpload";
 
 export default function CreateIncidentForm({ mutation }: any) {
-  const { register, handleSubmit, errors } = useForm({
+  const { uploadedImage, uploadImage } = useUpload();
+  const { register, handleSubmit, errors, watch, formState } = useForm({
     validationSchema: CREATE_INCIDENT_SCHEMA
   });
+  let watchedFields = watch(Array.from(formState.dirtyFields));
 
+  async function handleChangeImg(e: any) {
+    const { img } = watchedFields;
+    const uploadedImage = await uploadImage(img);
+    watchedFields = {
+      ...watchedFields,
+      img: uploadedImage
+    };
+  }
   function onSubmit(data: any) {
     mutation(data);
   }
@@ -47,7 +58,13 @@ export default function CreateIncidentForm({ mutation }: any) {
       <Field width={7}>
         {checkError("img")}
 
-        <input type="file" name="img" ref={register} className="bg-dark" />
+        <input
+          type="file"
+          name="img"
+          ref={register}
+          className="bg-dark"
+          onChange={(e) => handleChangeImg(e)}
+        />
       </Field>
       <Field width={7}>
         {checkError("maxResearchers")}

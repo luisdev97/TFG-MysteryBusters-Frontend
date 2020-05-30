@@ -13,7 +13,6 @@ export default function IncidentsForm({
   initialState
 }: IncidentsFormProps) {
   const [formData, setFormData] = useState<Incident>(initialState);
-  console.log(initialState);
 
   useEffect(() => {
     setFormData(initialState);
