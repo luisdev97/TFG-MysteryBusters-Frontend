@@ -23,9 +23,17 @@ export default function IncidentsForm({
       <Row columns={2} className="mx-auto">
         <Column width={8}>
           {Object.keys(initialState).length === 0 ? (
-            <CreateForm mutation={mutation} initialState={initialState} />
+            <CreateForm
+              mutation={mutation}
+              initialState={initialState}
+              handleChanges={setFormData}
+            />
           ) : (
-            <UpdateForm mutation={mutation} initialState={initialState} />
+            <UpdateForm
+              mutation={mutation}
+              initialState={initialState}
+              handleChanges={setFormData}
+            />
           )}
         </Column>
 
