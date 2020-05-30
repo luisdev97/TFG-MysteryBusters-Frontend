@@ -17,6 +17,7 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
     const uploadedImage = await uploadImage(img);
     setCloudinaryUrl(uploadedImage);
   }
+  
   function handlFormChanges(e: any) {
     if (e.target.name === "img") handleChangeImg();
     handleChanges({ ...watchedFields, img: cloudinaryUrl });
