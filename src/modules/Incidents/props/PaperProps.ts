@@ -1,4 +1,5 @@
 import { Incident } from '../models/entities/Incidents';
+import { LocationType } from '../models/types/LocationType';
 
 export type IncidentsPaperProps = {
     incidents: Array<Incident[]>;
@@ -24,6 +25,7 @@ export type PageContentProps = {
 }
 
 export type PageImageProps = {
+  place: string;
   img?: string;
   time: string;
 }

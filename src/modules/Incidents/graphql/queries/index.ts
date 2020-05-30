@@ -11,6 +11,7 @@ export const INCIDENTS_QUERY = gql`
       img
       date
       time
+      location
       maxResearchers
       researchers {
       username
