@@ -21,8 +21,6 @@ export const UpdateIncidentInput = gql`
       description: String
       img: String
       maxResearchers: Int
-      date: String
-      time: String
   }
 `
 

@@ -80,6 +80,9 @@ export default function IncidentsFormContainer() {
   }
 
   function update(id: number, input: any) {
+    console.log(id);
+    console.log(input);
+    return;
     if (input.date) {
       input.date = incident.date
         .split("-")

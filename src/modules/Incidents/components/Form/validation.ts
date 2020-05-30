@@ -44,8 +44,6 @@ export  const UPDATE_INCIDENT_SCHEMA: yup.ObjectSchema<Object> = yup.object().sh
             if(!value['0']) return true;
             return value['0'] && validateFileFormat(fileType, value['0'].type);
         }),
-    date: yup.string().required("La fecha es requerida"),
-    time: yup.string().required("La hora es requerida"),
     maxResearchers: yup.number().typeError("Debes indicar el número de plazas")
         .min(1, 'Se debe ofertar al menos una plaza')
         .max(4, 'Solo se pueden ofertar cuatro plazas')

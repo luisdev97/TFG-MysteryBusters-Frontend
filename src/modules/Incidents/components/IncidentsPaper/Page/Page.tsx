@@ -10,7 +10,7 @@ function Page({ numPage, incident }: PageProps) {
   return (
     <div className={ "incident-column " + (numPage === 1 ? "page1" : "page2") }>
        <PageHeader title={ title } />
-       <PageImage time={ time } img={ img } place={ location.place }/>
+       <PageImage time={ time } img={ img } place={ location ? location.place : 'Lugar' }/>
        <PageContent date={ date } description={ description }/>
     </div>
   );

@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { UPDATE_INCIDENT_SCHEMA } from "./validation";
+import { UPDATE_INCIDENT_SCHEMA as validationSchema } from "./validation";
 import { Form, FormField as Field, Label } from "semantic-ui-react";
 import { useParams } from "react-router";
 
 export default function UpdateForm({ initialState, mutation }: any) {
-  const { register, handleSubmit, errors } = useForm({
-    validationSchema: UPDATE_INCIDENT_SCHEMA,
-    defaultValues: (function(){
-      let validState = {...initialState};
-      delete validState.img;
-      return validState;
-    })()
-  });
+  const { register, handleSubmit, errors, reset } = useForm({ validationSchema });
   const { id } = useParams();
+  const [formState, setFormState] = useState(initialState);
+
+  useEffect(() => {
+    if (initialState !== formState) reset(initialState);
+  }, [initialState]);
+
   function onSubmit(data: any) {
-    const input = {...initialState}
-    mutation(id, Object.assign({},input));
+    const input = { ...initialState };
+    mutation(id, Object.assign({}, input));
   }
 
   function checkError(title: string) {
@@ -43,14 +42,7 @@ export default function UpdateForm({ initialState, mutation }: any) {
         {checkError("description")}
         <input name="description" ref={register} />
       </Field>
-      <Field width={7}>
-        {checkError("date")}
-        <input type="date" name="date" ref={register} />
-      </Field>
-      <Field width={7}>
-        {checkError("time")}
-        <input type="time" name="time" ref={register} />
-      </Field>
+     
       <Field width={7}>
         {checkError("img")}
 
