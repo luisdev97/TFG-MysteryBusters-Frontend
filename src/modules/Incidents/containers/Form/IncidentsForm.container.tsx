@@ -80,16 +80,10 @@ export default function IncidentsFormContainer() {
   }
 
   function update(id: number, input: any) {
-    console.log(id);
-    console.log(input);
-    return;
-    if (input.date) {
-      input.date = incident.date
-        .split("-")
-        .reverse()
-        .join("/");
+
+      if(input.maxResearchers)
       input.maxResearchers = Number(incident.maxResearchers);
-      input.img = "";
+      console.log(input);
       updateIncident({
         variables: {
           id,
@@ -97,10 +91,10 @@ export default function IncidentsFormContainer() {
         }
       })
         .then(data => {
-          history.push(`/anomalies/${anomaly_id}`);
+          history.push(`/anomalies/${id}`);
         })
         .then(error => console.log(error));
-    }
+    
   }
 
   if (loading) return <p>Loading</p>;
