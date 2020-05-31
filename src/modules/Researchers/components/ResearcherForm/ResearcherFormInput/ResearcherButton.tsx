@@ -1,25 +1,18 @@
 import React from "react";
 
-export default function ResearcherInput({ type, name, placeholder }: any) {
+export default function ResearcherButton() {
   return (
-    <div className="control block-cube block-input ">
-      <input
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        className="bg-transparent"
-      />
+    <button className="btn block-cube block-cube-hover" type="button">
       <div className="bg-top">
         <div className="bg-inner"></div>
       </div>
-
       <div className="bg-right">
         <div className="bg-inner"></div>
       </div>
-
       <div className="bg">
         <div className="bg-inner"></div>
       </div>
-    </div>
+      <div className="text">Log In</div>
+    </button>
   );
 }
