@@ -3,6 +3,8 @@ import ResearcherListContainer from '../modules/Researchers/containers/Researche
 import AnomaliesListContainer from '../modules/Anomalies/containers/AnomaliesList/AnomaliesList.container';
 import AnomalyDetailContainer from '../modules/Anomalies/containers/AnomalyDetail.container';
 import IncidentsFormContainer from '../modules/Incidents/containers/Form/IncidentsForm.container';
+import ResearcherForm from '../modules/Researchers/containers/ResearcherForm.container';
+import ResearcherFormContainer from '../modules/Researchers/containers/ResearcherForm.container';
 
 const routes = [
     {
@@ -28,9 +30,11 @@ const routes = [
     {
         path: '/form',
         component: IncidentsFormContainer
+    }, {
+        path: '/register',
+        component: ResearcherFormContainer
     }
-    
+
 ]
 
 export default routes;
- 

@@ -80,7 +80,8 @@ export default function IncidentsFormContainer() {
   }
 
   function update(id: number, input: any) {
-
+    console.log(anomaly_id)
+    return;
       if(input.maxResearchers)
       input.maxResearchers = Number(incident.maxResearchers);
       console.log(input);
@@ -91,7 +92,7 @@ export default function IncidentsFormContainer() {
         }
       })
         .then(data => {
-          history.push(`/anomalies/${id}`);
+          history.push(`/anomalies/${anomaly_id}`);
         })
         .then(error => console.log(error));
     
