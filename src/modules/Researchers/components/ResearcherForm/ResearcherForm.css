@@ -4,7 +4,8 @@
   margin-top: 10% !important;
 }
 
-.rform-segment{ 
+.form-segment{ 
+    margin-top: 0 !important;
     background-color: #212121 !important;
 
 }
@@ -21,14 +22,16 @@
 }
 
 
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
 .form {
     width: 300px;
     padding: 64px 15px 24px;
     margin: 0 auto;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
 }
 .form .control {
     margin: 0 0 24px;
@@ -136,20 +139,4 @@
 .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
     top: 100%;
 }
-.credits {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    padding: 15px 15px;
-    width: 100%;
-    z-index: 111;
-}
-.credits a {
-    opacity: 0.6;
-    color: #fff;
-    font-size: 11px;
-    text-decoration: none;
-}
-.credits a:hover {
-    opacity: 1;
-}
+

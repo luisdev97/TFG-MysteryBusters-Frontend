@@ -11,18 +11,20 @@ export default function ResearcherForm() {
 
   return (
     <Container
-      className={
-        ("mt-5 researcher-form-container wrapper ") + ( signupMode ? "right-panel-active" : "left-panel-active")
-      }
-    >
-      <Segment.Group horizontal className="h-100 rform-segment">
-        <Segment className="form-wrapper sign-in-wrapper">
+    className={
+      ("mt-5 researcher-form-container wrapper ") + ( signupMode ? "right-panel-active" : "")
+    }
+  >
+      <Segment.Group horizontal className="h-100 form-segment">
+          
+        <Segment className="form-wrapper sign-up-wrapper">
           <Signup />
         </Segment>
 
-        <Segment className="form-wrapper sign-up-wrapper">
+        <Segment className="form-wrapper sign-in-wrapper">
           <Signin />
         </Segment>
+        
       </Segment.Group>
       <OverlayForm setMode={() => setSignupMode(!signupMode)} />
     </Container>
