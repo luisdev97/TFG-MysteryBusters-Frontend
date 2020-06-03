@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ResearcherInput({ type, name, placeholder }: any) {
+export default function ResearcherInput({ type, name, placeholder, register }: any) {
   return (
     <div className="control block-cube block-input ">
       <input
@@ -8,6 +8,7 @@ export default function ResearcherInput({ type, name, placeholder }: any) {
         placeholder={placeholder}
         type={type}
         className="bg-transparent"
+        ref={register}
       />
       <div className="bg-top">
         <div className="bg-inner"></div>
