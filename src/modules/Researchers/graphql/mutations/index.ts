@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 
 
 const registerResearcherInput = gql`
-  input RegisterResearcherInput {
+  input ResearcherInput {
     firstname: String!
     lastname: String!
     age: Int
@@ -16,7 +16,7 @@ const registerResearcherInput = gql`
 
 
 export const REGISTER_RESEARCHER_MUTATION = gql`
-  mutation register($input: RegisterResearcherInput!) {
+  mutation register($input: ResearcherInput!) {
     createResearcher(input: $input) {
       firstname
       lastname

@@ -2,12 +2,13 @@ import React from "react";
 import { Form } from "semantic-ui-react";
 import ResearcherInput from "./ResearcherFormInput/ResearcherInput";
 import ResearcherButton from "./ResearcherFormInput/ResearcherButton";
-import { useForm, Controller } from "react-hook-form";
-import { register } from '../../../../serviceWorker';
-export default function Signup() {
-  const { register, handleSubmit, errors, control, watch } = useForm();
+import { useForm } from "react-hook-form";
+import { RESEARCHER_VALIDATION_SCHEMA as validationSchema } from './validations';
+
+export default function Signup({ mutation }: any) {
+  const { register, handleSubmit, errors, control, watch } = useForm({ validationSchema });
   const watched = watch()
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => mutation(data);
 
   return (
     <Form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -20,7 +21,6 @@ export default function Signup() {
       <ResearcherInput type="password" name="password" placeholder="Password" register={register}/>
       <ResearcherInput type="file" name="avatar" placeholder="Avatar" register={register}/>
       <ResearcherButton/>
-      <button onClick={() => console.log(watched)}>Check</button>
     </Form>
   );
 }
