@@ -15,7 +15,11 @@ export default function ResearcherFormContainer() {
     })
   }
 
+  function login(input: any){
+    console.log(input)
+  }
+
   return (
-    <ResearcherForm create={register}/>
+    <ResearcherForm register={register} login={login}/>
   );
 }

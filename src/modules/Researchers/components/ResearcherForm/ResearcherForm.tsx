@@ -6,7 +6,7 @@ import Signup from "./Signup";
 import OverlayForm from "./OverlayForm";
 import "./OverlayForm.css";
 
-export default function ResearcherForm({ create, update }: any) {
+export default function ResearcherForm({ register, login }: any) {
   const [signupMode, setSignupMode] = useState<boolean>(false);
 
   return (
@@ -18,11 +18,11 @@ export default function ResearcherForm({ create, update }: any) {
     >
       <Segment.Group horizontal className="h-100 form-segment">
         <Segment className="form-wrapper sign-up-wrapper">
-          <Signup mutation={ create }/>
+          <Signup mutation={ register }/>
         </Segment>
 
         <Segment className="form-wrapper sign-in-wrapper">
-          <Signin mutation={ update }/>
+          <Signin mutation={ login }/>
         </Segment>
       </Segment.Group>
       <OverlayForm setMode={() => setSignupMode(!signupMode)} />
