@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ResearcherButton({ handleSubmit }: any) {
+export default function ResearcherButton({ text }: any) {
   return (
     <button className="btn block-cube block-cube-hover" type="submit">
       <div className="bg-top">
@@ -12,7 +12,7 @@ export default function ResearcherButton({ handleSubmit }: any) {
       <div className="bg">
         <div className="bg-inner"></div>
       </div>
-      <div className="text">Log In</div>
+      <div className="text">{ text }</div>
     </button>
   );
 }

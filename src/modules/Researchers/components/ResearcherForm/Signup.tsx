@@ -3,11 +3,10 @@ import { Form, Label } from "semantic-ui-react";
 import ResearcherInput from "./ResearcherFormInput/ResearcherInput";
 import ResearcherButton from "./ResearcherFormInput/ResearcherButton";
 import { useForm } from "react-hook-form";
-import { RESEARCHER_VALIDATION_SCHEMA as validationSchema } from './validations';
+import { RESEARCHER_VALIDATION_REGISTER_SCHEMA as validationSchema } from './validations';
 
 export default function Signup({ mutation }: any) {
-  const { register, handleSubmit, errors, control, watch } = useForm({ validationSchema });
-  const watched = watch()
+  const { register, handleSubmit, errors } = useForm({ validationSchema });
   const onSubmit = (data: any) => mutation(data);
 
   function checkError(title: string) {
@@ -35,7 +34,7 @@ export default function Signup({ mutation }: any) {
       <ResearcherInput type="password" name="password" placeholder="Password" register={register}/>
       {checkError("avatar")}
       <ResearcherInput type="file" name="avatar" placeholder="Avatar" register={register}/>
-      <ResearcherButton/>
+      <ResearcherButton text="Registro"/>
     </Form>
   );
 }
