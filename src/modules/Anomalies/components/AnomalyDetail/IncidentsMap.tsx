@@ -10,11 +10,13 @@ const private_key: string =
   "pk.eyJ1IjoibHVpc2Rldjk3IiwiYSI6ImNrOWVsdzAyMjAyeWYza3QwMnpma3dndm0ifQ.VwXoQUAvKYe6haGTFRIPCA";
 const api_url: string = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const Map = ReactMapboxGl({
-  accessToken: private_key
+  accessToken: private_key,
+  maxZoom: 19
 });
 
 function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
   const { lat, lng } = point;
+  const [center, setCenter] = useState<[number, number]>([lng, lat]);
   const [popupProps, setPopupPros] = useState<any>({
     visible: false, location: {}
   });
@@ -23,13 +25,14 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
     <Map
       style="mapbox://styles/mapbox/dark-v9"
       containerStyle={mapStyles}
-      center={[lng, lat]}
+      center={center}
       zoom={[14]}
       className="map-container"
-      onDblClick={async (m: unknown, e: any) => {
+      onDblClick={async (m: any, e: any) => {
         const { lat, lng } = e.lngLat;
         const place = await getPlaceByCoords({ lat, lng });
         const location = { lat, lng, place };
+        setCenter([lng,lat]);
         setPopupPros({ visible: true, location });
       }}
       onClick={() => setPopupPros({ ...popupProps, visible: false })}
@@ -37,7 +40,7 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
       <Image id={"ufo"} url={markerIcon} options={{ width: "90px" }} />
 
       {popupProps.visible && (
-        <Popup coordinates={[popupProps.location.lng, popupProps.location.lat]}>
+        <Popup coordinates={[center[0], center[1]]}>
           <Button.Group>
             <Button
               onClick={() => setPopupPros({ ...popupProps, visible: false })}
