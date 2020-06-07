@@ -21,14 +21,17 @@ function AnomaliesList({
 }: AnomaliesListProps) {
   const [visibleForm, setVisibleForm] = useState<boolean>(false);
   const pagination = usePagination<Anomaly>(anomalies, 2);
-  
+
   return (
     <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
-      <Popup
+      <Popup className="createAnomaly-popup"
         trigger={
-          <Button className="anomalyPopup-trigger d-block" color="vk">
-            Crear anomalía
-          </Button>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Button className="anomalyPopup-trigger d-block" color="vk">
+              Crear anomalía
+            </Button>
+          </div>
+
         }
         content={
           <CreateAnomalyForm
@@ -41,14 +44,19 @@ function AnomaliesList({
         on="click"
         open={visibleForm}
         onOpen={() => setVisibleForm(true)}
+        onClose={() => setVisibleForm(false)}
         position="top center"
       />
-      <Pagination
-        className='anomalies-pagination bg-dark text-white'
-        defaultActivePage={1}
-        totalPages={anomalies.length / 2}
-        onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}
-      />
+      <div className="pagination-wrapper">
+        <Pagination
+          className='anomalies-pagination mx-auto'
+          inverted
+          defaultActivePage={1}
+          totalPages={anomalies.length / 2}
+          onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}
+        />
+      </div>
+
       {pagination.currentData().map(a => (
         <AnomalyItem key={a.id} anomaly={a} update={update} remove={remove} />
       ))}

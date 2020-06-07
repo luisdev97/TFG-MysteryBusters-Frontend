@@ -7,10 +7,17 @@
 }
 
 .anomalyPopup-trigger {
-  margin-left: 43% !important;
+  margin-left: 41% !important;
 }
 
-.anomalies-pagination {
-  margin-left: 32% !important;
+.pagination-wrapper {  
   margin-top: 5% !important;
+  display: flex;
+  justify-content: center;
+}
+
+
+.createAnomaly-popup {
+  opacity: 0.95 !important;
+  border-radius: 10px !important;
 }

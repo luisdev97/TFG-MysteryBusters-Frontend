@@ -22,7 +22,7 @@ export default function CreateAnomalyForm({ mutation, closeForm }: any) {
   }
 
   function onSubmit(data: any) {
-    mutation({ researcher_id: 4, ...data })
+    mutation({ researcher_id: 1, ...data })
     closeForm();
   }
 

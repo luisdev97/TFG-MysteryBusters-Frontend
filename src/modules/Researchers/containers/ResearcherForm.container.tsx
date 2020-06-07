@@ -12,7 +12,8 @@ export default function ResearcherFormContainer() {
       variables: {
         input
       }
-    })
+    });
+    
   }
 
   function login(input: any){

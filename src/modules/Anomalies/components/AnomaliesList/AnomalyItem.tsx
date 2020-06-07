@@ -15,6 +15,8 @@ import {
   Icon
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+
+
 function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
   const { id, description, type, creator } = anomaly;
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -114,7 +116,7 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
             />
             {editMode && (
               <Segment
-                size={"small"}
+                size={"mini"}
                 inverted
                 floated={"left"}
                 className="mt-2 text-white p-3 m-0"
