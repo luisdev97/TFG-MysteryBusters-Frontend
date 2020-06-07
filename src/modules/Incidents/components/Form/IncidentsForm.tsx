@@ -21,7 +21,7 @@ export default function IncidentsForm({
   return (
     <Grid className="anomaly-detail-container mx-auto bg-danger">
       <Row columns={2} className="mx-auto">
-        <Column width={8}>
+        <Column width={8} className="d-flex align-items-center">
           {Object.keys(initialState).length === 0 ? (
             <CreateForm
               mutation={mutation}

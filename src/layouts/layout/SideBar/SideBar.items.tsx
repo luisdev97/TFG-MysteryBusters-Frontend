@@ -1,17 +1,17 @@
 import { SemanticICONS } from 'semantic-ui-react';
 export const SideBarItems: SideBarItemType[] = [
     {
-        title: "Researchers",
+        title: "Investigadores",
         icon: "detective",
         to: "/researchers"
     },
     {
-        title: "Anomalies",
+        title: "Anomalías",
         icon: "snapchat ghost",
         to: "/anomalies"
     },
     {
-        title: "Incidents",
+        title: "Incidentes",
         icon: "newspaper outline",
         to: "/incidents"
     }

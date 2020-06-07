@@ -40,7 +40,7 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-info w-75 mx-auto mt-5"
+      className="incidents-form bg-info w-75 mx-auto"
     >
       <Field width={7} error className="mx-auto">
         {checkError("title")}
