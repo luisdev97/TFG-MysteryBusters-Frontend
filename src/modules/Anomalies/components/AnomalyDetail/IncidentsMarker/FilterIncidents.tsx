@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Radio } from "semantic-ui-react";
+import { Form, Radio, Icon, Label } from "semantic-ui-react";
 export default function FilterIncidents({ setAvailables }: any) {
   const [onlyAvailables, setOnlyAvailables] = useState<boolean>(false);
 
@@ -8,21 +8,11 @@ export default function FilterIncidents({ setAvailables }: any) {
   }, [onlyAvailables]);
 
   return (
-    <Form
-      className="bg-dark mx-auto w-75 corner border border-secondary mb-5"
-      style={{ borderRadius: "15px", height: "60px" }}
-    >
-      <Form.Field className="mx-auto w-75">
-        <Radio
-          label="Mostrar solo casos no resueltos"
-          className='ml-5 mb-2'
-          name="radioGroup"
-          value="all"
-          checked={onlyAvailables}
-          onChange={() => setOnlyAvailables(!onlyAvailables)}
-          toggle
-        />
-      </Form.Field>
-    </Form>
-  );
+    <div className="w-100 d-flex justify-content-center">
+      <Label className="bg-transparent mx-auto">
+        <Icon size="huge" link name={!onlyAvailables ? "lock" : "unlock"} onClick={() => setOnlyAvailables(!onlyAvailables)} color={!onlyAvailables ? "black" : "green"} />
+        <h3 className="d-inline">Mostrar casos resueltos</h3>
+      </Label>
+    </div>
+  )
 }
