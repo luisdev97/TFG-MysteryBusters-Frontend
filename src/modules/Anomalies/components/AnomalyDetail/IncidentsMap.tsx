@@ -50,7 +50,7 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
             <Button.Or text="<>" />
             <Link
               to={{
-                pathname: "/form",
+                pathname: `/anomalies/${anomaly_id}/form`,
                 state: { location: popupProps.location, anomaly_id }
               }}
             >

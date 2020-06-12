@@ -14,6 +14,13 @@ const registerResearcherInput = gql`
   }
 `
 
+const loginInput = gql`
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+`
+
 
 export const REGISTER_RESEARCHER_MUTATION = gql`
   mutation register($input: ResearcherInput!) {
@@ -25,5 +32,12 @@ export const REGISTER_RESEARCHER_MUTATION = gql`
 
     }
   }
+`
+
+
+export const LOGIN_MUTATION = gql`
+mutation login($input: Login!) {
+  login(input: $input)  
+}
 `
 

@@ -32,3 +32,13 @@ query researchers {
 }
 `
 
+export const ME_QUERY = gql`
+    query me {
+        id
+        firstname
+        lastname
+        email
+        role
+    }
+`
+

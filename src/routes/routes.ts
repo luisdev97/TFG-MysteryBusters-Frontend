@@ -24,11 +24,11 @@ const routes = [
         component: AnomaliesListContainer
     },
     {
-        path: '/form/:id',
+        path: '/anomalies/:anomaly_id/form/:id',
         component: IncidentsFormContainer
     },
     {
-        path: '/form',
+        path: '/anomalies/:anomaly_id/form',
         component: IncidentsFormContainer
     }, {
         path: '/register',

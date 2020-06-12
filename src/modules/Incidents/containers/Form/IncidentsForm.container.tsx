@@ -47,10 +47,12 @@ export default function IncidentsFormContainer() {
   );
 
   useEffect(() => {
+    
     if (id && !data) {
       getIncident();
     }
     if (!loading && data) {
+      console.log("llega la request")
       setIncident(data.getIncident);
     }
   }, [data]);

@@ -30,7 +30,7 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
   function checkError(title: string) {
     return (
       errors.hasOwnProperty(title) && (
-        <Label basic color="red" pointing="below">
+        <Label className="mx-auto" horizontal basic color="red">
           {errors[title].message}
         </Label>
       )
@@ -40,26 +40,30 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="incidents-form bg-info w-75 mx-auto"
+      className="incidents-form w-75 mx-auto group"
     >
-      <Field width={7} error className="mx-auto">
+      <Field width={13} error className="mx-auto">
         {checkError("title")}
         <input
+          type="text"
           name="title"
+          placeholder="Título"
           ref={register}
           onChange={e => handlFormChanges(e)}
         />
       </Field>
 
-      <Field width={7}>
+      <Field width={16}>
         {checkError("description")}
         <input
+          placeholder="Descripción del incidente"
+          type="textarea"
           name="description"
           ref={register}
           onChange={e => handlFormChanges(e)}
         />
       </Field>
-      <Field width={7}>
+      <Field width={9}>
         {checkError("date")}
         <input
           type="date"
@@ -77,7 +81,7 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
           onChange={e => handlFormChanges(e)}
         />
       </Field>
-      <Field width={7}>
+      <Field width={8}>
         {checkError("img")}
 
         <input
@@ -88,9 +92,10 @@ export default function CreateIncidentForm({ mutation, handleChanges }: any) {
           onChange={e => handlFormChanges(e)}
         />
       </Field>
-      <Field width={7}>
+      <Field width={5}>
         {checkError("maxResearchers")}
         <input
+          placeholder="Plazas"
           type="number"
           name="maxResearchers"
           ref={register}
