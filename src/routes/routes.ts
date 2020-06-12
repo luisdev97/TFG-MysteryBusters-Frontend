@@ -9,30 +9,37 @@ import ResearcherFormContainer from '../modules/Researchers/containers/Researche
 const routes = [
     {
         path: '/researchers',
-        component: ResearcherListContainer
+        component: ResearcherListContainer,
+        authRequired: false
     },
     {
         path: '/incidents',
         component: IncidentsPaperContainer,
+        authRequired: false
     },
     {
         path: '/anomalies/:id',
-        component: AnomalyDetailContainer
+        component: AnomalyDetailContainer,
+        authRequired: false
     },
     {
         path: '/anomalies',
-        component: AnomaliesListContainer
+        component: AnomaliesListContainer,
+        authRequired: false
     },
     {
         path: '/anomalies/:anomaly_id/form/:id',
-        component: IncidentsFormContainer
+        component: IncidentsFormContainer,
+        authRequired: true
     },
     {
         path: '/anomalies/:anomaly_id/form',
-        component: IncidentsFormContainer
+        component: IncidentsFormContainer,
+        authRequired: true
     }, {
         path: '/register',
-        component: ResearcherFormContainer
+        component: ResearcherFormContainer,
+        authRequired: false
     }
 
 ]
