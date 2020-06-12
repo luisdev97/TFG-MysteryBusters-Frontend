@@ -12,7 +12,7 @@ import {
   createHttpLink
 } from "@apollo/client";
 import { setContext } from "@apollo/link-context";
-import AuthProvider, { AuthContext} from "./modules/Context/AuthContext";
+import AuthProvider, { AuthContext } from "./modules/Context/AuthContext";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:4000/graphql",
@@ -38,14 +38,18 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AuthProvider>
-        
-      </AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <AuthProvider>
+          <AuthContext.Consumer>
+            {(auth) => {
+              console.log(auth)
+              return <App/>
+            }}
+          </AuthContext.Consumer>
+        </AuthProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

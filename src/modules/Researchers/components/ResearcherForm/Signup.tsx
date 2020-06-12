@@ -5,6 +5,7 @@ import ResearcherButton from "./ResearcherFormInput/ResearcherButton";
 import { useForm } from "react-hook-form";
 import { RESEARCHER_VALIDATION_REGISTER_SCHEMA as validationSchema } from './validations';
 import ResearcherCompetenciesSelect from "./ResearcherFormInput/ResearcherCompetenciesSelect";
+import { useHistory } from "react-router-dom";
 
 export default function Signup({ mutation }: any) {
   const { register, handleSubmit, errors, watch } = useForm({ validationSchema });

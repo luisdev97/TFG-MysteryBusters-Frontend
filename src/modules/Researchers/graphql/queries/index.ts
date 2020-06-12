@@ -34,11 +34,13 @@ query researchers {
 
 export const ME_QUERY = gql`
     query me {
-        id
-        firstname
-        lastname
-        email
-        role
+        me {
+            id
+            firstname
+            lastname
+            email
+            role
+        }
     }
 `
 

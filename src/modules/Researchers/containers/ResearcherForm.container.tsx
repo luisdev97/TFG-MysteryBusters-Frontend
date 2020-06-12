@@ -1,13 +1,30 @@
-import React, { lazy } from "react";
+import React, { useState, useEffect } from "react";
 import ResearcherForm from '../components/ResearcherForm/ResearcherForm';
 import { useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { REGISTER_RESEARCHER_MUTATION, LOGIN_MUTATION } from '../graphql/mutations/index';
 import { ME_QUERY } from "../graphql/queries";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
+import { Researcher } from "../models/entities/Researcher";
 
 export default function ResearcherFormContainer() {
+  const history = useHistory();
+  const { login: auth } = useAuth();
+  const [authenticatedUser, setauthenticatedUser] = useState<null | Researcher>(null)
   const [registerResearcher] = useMutation(REGISTER_RESEARCHER_MUTATION);
-  const [loginResearcher] = useMutation(LOGIN_MUTATION);
+  const [loginResearcher] = useMutation(LOGIN_MUTATION, { update(cache, { data: cacheData }){
+    auth(cacheData.login, authenticatedUser)
+  }});
   const [getMe, { error, data, loading }] = useLazyQuery(ME_QUERY);
+
+  useEffect(() => {
+    if(data && !loading){
+      setauthenticatedUser(data.me);
+      localStorage.setItem("me", JSON.stringify(data.me));
+      history.push("/");
+    }
+  }, [data])
+
 
   function register(input: any) {
     delete input.avatar;
@@ -19,15 +36,24 @@ export default function ResearcherFormContainer() {
 
   }
 
-  async function login(input: any) {
+  async function login(input: any, setLogin: Function, loginState: any) {
+    let errorMessage: string | null = null;
+    
     const jwt: any = await loginResearcher({
       variables: {
         input
       }
-    })
-    localStorage.setItem("auth_token", jwt.data.login);
-    //getMe({ hea})
-    console.log(localStorage.getItem("auth_token"));
+    }).catch(error => {
+      errorMessage = error.message.split(":")[1];
+    });
+
+    if (errorMessage)
+      setLogin({ ...loginState, error: errorMessage });
+    else {
+      localStorage.setItem("auth_token", jwt.data.login);
+      await getMe();
+    }
+
   }
 
   return (
