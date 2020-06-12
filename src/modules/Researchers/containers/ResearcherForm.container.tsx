@@ -10,17 +10,18 @@ import { Researcher } from "../models/entities/Researcher";
 export default function ResearcherFormContainer() {
   const history = useHistory();
   const { login: auth } = useAuth();
-  const [authenticatedUser, setauthenticatedUser] = useState<null | Researcher>(null)
+  const [token, setToken] = useState<null | string>(null)
   const [registerResearcher] = useMutation(REGISTER_RESEARCHER_MUTATION);
   const [loginResearcher] = useMutation(LOGIN_MUTATION, { update(cache, { data: cacheData }){
-    auth(cacheData.login, authenticatedUser)
+    setToken(cacheData.login);
+    //auth(cacheData.login, authenticatedUser)
   }});
-  const [getMe, { error, data, loading }] = useLazyQuery(ME_QUERY);
+  const [getMe, { error, data, loading, called }] = useLazyQuery(ME_QUERY);
 
   useEffect(() => {
-    if(data && !loading){
-      setauthenticatedUser(data.me);
+    if(data && !loading && token){
       localStorage.setItem("me", JSON.stringify(data.me));
+      auth(token, data.me);
       history.push("/");
     }
   }, [data])
