@@ -103,6 +103,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       token: null,
       researcherId: null,
       type: null,
+      me: null
     }));
   }, []);
 

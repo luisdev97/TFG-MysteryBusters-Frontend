@@ -1,10 +1,20 @@
 import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { useAuth, AuthContext } from "../../../modules/Context/AuthContext";
+import { useHistory } from "react-router-dom";
 const guestIcon = require("../../../assets/icons/pregunta.png");
 const researcherIcon = require("../../../assets/icons/agente.png");
 
 const SideBarResearcherCard = () => {
+  const { logout } = useAuth();
+  const history = useHistory()
+  
+  function handleLogout(){
+    logout();
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <AuthContext.Consumer>
       {({ me }) => (
@@ -29,6 +39,8 @@ const SideBarResearcherCard = () => {
           </span>
             </Card.Meta>
           </Card.Content>
+          { me && <Button content="Logout" color="teal" onClick={ () => handleLogout() }/>}
+
         </Card>)}
 
     </AuthContext.Consumer>

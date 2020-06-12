@@ -14,7 +14,6 @@ export default function ResearcherFormContainer() {
   const [registerResearcher] = useMutation(REGISTER_RESEARCHER_MUTATION);
   const [loginResearcher] = useMutation(LOGIN_MUTATION, { update(cache, { data: cacheData }){
     setToken(cacheData.login);
-    //auth(cacheData.login, authenticatedUser)
   }});
   const [getMe, { error, data, loading, called }] = useLazyQuery(ME_QUERY);
 

@@ -14,7 +14,7 @@ export const SideBar = () => {
       icon="labeled"
       inverted
       vertical
-      visible={visible}
+      visible={true}
       width="wide"
       className="bg-dark"
     >
