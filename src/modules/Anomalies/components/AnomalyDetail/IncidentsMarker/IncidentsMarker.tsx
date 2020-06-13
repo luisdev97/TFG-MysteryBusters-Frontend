@@ -33,7 +33,7 @@ function IncidentsMarker({
         <h1 className="incident-marker text-center mt-0">
           Incidentes
           <Popup trigger={<Icon name="add" color="olive" className="ml-2" />}>
-            <Popup.Header content="Para agregar un nuevo incidente haga click en el mapa" />
+            <Popup.Header content="Para agregar un nuevo incidente haga click en el mapa. Asegúrese de haber iniciado sesión" />
           </Popup>
         </h1>
 

@@ -3,10 +3,11 @@ import {
   ListItem,
   ListIcon as Icon,
   ListContent as Content,
-  Confirm
+  Confirm,
+  Dropdown
 } from "semantic-ui-react";
 import { IncidentMarkerProps } from "../../../props/Anomalies";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const IncidentMarker = ({
   incident,
@@ -16,7 +17,7 @@ const IncidentMarker = ({
   const [visibleConfirm, setVisibleConfirm] = useState<boolean>(false);
   const { belong_to_anomaly, id, title, location } = incident;
   //.const { id: anomaly_id } = belong_to_anomaly;
-
+  const history = useHistory();
   function deleteIncident(id: number) {
     mutation(id);
     setVisibleConfirm(false);
@@ -32,12 +33,17 @@ const IncidentMarker = ({
         size="large"
       />
       <Content
-        content={title || "Avistamiento de Wailor en la casa de zeus"}
+        content={title || "Incidente sin título"}
         className="inc-marker-text"
       />
-      <Link to={`/anomalies/${belong_to_anomaly.id}/form/${id}`}>
-        <Icon name="edit outline" color="orange" link size="large" />
-      </Link>
+
+      <Icon
+        name="edit outline"
+        color="orange"
+        link
+        size="large"
+        onClick={() => history.push(`/anomalies/${belong_to_anomaly.id}/form/${id}`)}
+      />
 
       <Icon
         name="trash"

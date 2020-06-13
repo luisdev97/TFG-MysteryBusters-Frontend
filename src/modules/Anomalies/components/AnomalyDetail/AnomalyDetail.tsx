@@ -23,7 +23,7 @@ function AnomalyDetail({ anomaly, mutation }: AnomalyDetailProps) {
           <h4 className="text-center">
             {creator && creator.firstname + " " + creator.lastname}
           </h4>
-          <IncidentsMap point={locationCoords} anomaly_id={id} />
+          <IncidentsMap point={locationCoords} anomaly_id={id}/>
         </Column>
 
         <Column width={8}>
