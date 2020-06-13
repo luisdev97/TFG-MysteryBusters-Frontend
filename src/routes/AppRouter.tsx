@@ -20,7 +20,6 @@ function AppRouter() {
           {routeComponents(me)}
         </Switch>
       )}
-
     </AuthContext.Consumer>
   );
 }

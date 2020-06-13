@@ -6,6 +6,7 @@ import "./AnomaliesList.css";
 import CreateAnomalyForm from "../Form/AnomalyForm";
 import usePagination from "../../../../hooks/usePagination";
 import { Anomaly } from "../../models/entities/Anomaly";
+import { AuthContext } from "../../../Context/AuthContext";
 
 const style = {
   borderRadius: 0,
@@ -23,44 +24,49 @@ function AnomaliesList({
   const pagination = usePagination<Anomaly>(anomalies, 2);
 
   return (
-    <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
-      <Popup className="createAnomaly-popup"
-        trigger={
-          <div onClick={(e) => e.stopPropagation()}>
-            <Button className="anomalyPopup-trigger d-block" color="vk">
-              Crear anomalía
-            </Button>
-          </div>
-
-        }
-        content={
-          <CreateAnomalyForm
-            mutation={create}
-            closeForm={() => setVisibleForm(false)}
-          />
-        }
-        style={style}
-        inverted
-        on="click"
-        open={visibleForm}
-        onOpen={() => setVisibleForm(true)}
-        onClose={() => setVisibleForm(false)}
-        position="top center"
-      />
-      <div className="pagination-wrapper">
-        <Pagination
-          className='anomalies-pagination mx-auto'
+    <AuthContext.Consumer>
+      {({ me }) => (
+        <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
+        <Popup className="createAnomaly-popup"
+          trigger={
+            <div onClick={(e) => e.stopPropagation()}>
+              <Button className="anomalyPopup-trigger d-block" color="vk">
+                Crear anomalía
+              </Button>
+            </div>
+  
+          }
+          content={
+            <CreateAnomalyForm
+              mutation={create}
+              closeForm={() => setVisibleForm(false)}
+              researcher_id={me?.id}
+            />
+          }
+          style={style}
           inverted
-          defaultActivePage={1}
-          totalPages={anomalies.length / 2}
-          onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}
+          on="click"
+          open={visibleForm}
+          onOpen={() => setVisibleForm(true)}
+          onClose={() => setVisibleForm(false)}
+          position="top center"
         />
-      </div>
-
-      {pagination.currentData().map(a => (
-        <AnomalyItem key={a.id} anomaly={a} update={update} remove={remove} />
-      ))}
-    </List>
+        <div className="pagination-wrapper">
+          <Pagination
+            className='anomalies-pagination mx-auto'
+            inverted
+            defaultActivePage={1}
+            totalPages={anomalies.length / 2}
+            onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}
+          />
+        </div>
+  
+        {pagination.currentData().map(a => (
+          <AnomalyItem key={a.id} anomaly={a} update={update} remove={remove} />
+        ))}
+      </List>
+      )}
+    </AuthContext.Consumer>
   );
 }
 

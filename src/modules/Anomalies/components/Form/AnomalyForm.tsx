@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { anomalyTypes } from './AnomalyTypes';
 
 
-export default function CreateAnomalyForm({ mutation, closeForm }: any) {
+export default function CreateAnomalyForm({ mutation, closeForm, researcher_id }: any) {
   const { errors, register, watch, handleSubmit } = useForm({
     validationSchema: ANOMALY_VALIDATION_SCHEMA
   });
@@ -22,7 +22,7 @@ export default function CreateAnomalyForm({ mutation, closeForm }: any) {
   }
 
   function onSubmit(data: any) {
-    mutation({ researcher_id: 1, ...data })
+    mutation({ researcher_id , ...data });
     closeForm();
   }
 
