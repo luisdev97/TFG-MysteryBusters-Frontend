@@ -5,6 +5,7 @@ import AnomalyDetailContainer from '../modules/Anomalies/containers/AnomalyDetai
 import IncidentsFormContainer from '../modules/Incidents/containers/Form/IncidentsForm.container';
 import ResearcherForm from '../modules/Researchers/containers/ResearcherForm.container';
 import ResearcherFormContainer from '../modules/Researchers/containers/ResearcherForm.container';
+import Home from '../modules/general/Home';
 
 const routes = [
     {
@@ -40,7 +41,12 @@ const routes = [
         path: '/register',
         component: ResearcherFormContainer,
         authRequired: false
+    }, {
+        path: "/",
+        component: Home,
+        authRequired: false
     }
+
 
 ]
 
