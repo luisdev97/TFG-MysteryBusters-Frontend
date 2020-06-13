@@ -21,12 +21,12 @@ function AnomaliesList({
   remove
 }: AnomaliesListProps) {
   const [visibleForm, setVisibleForm] = useState<boolean>(false);
-  const pagination = usePagination<Anomaly>(anomalies, 2);
+  const pagination = usePagination<Anomaly>(anomalies, 5);
 
   return (
     <AuthContext.Consumer>
       {({ me }) => (
-        <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5">
+        <List className="w-50 bg-danger mx-auto mt-5 pt-5 pb-5 anomaly-list">
         <Popup className="createAnomaly-popup"
           trigger={
             <div onClick={(e) => e.stopPropagation()}>
@@ -56,7 +56,7 @@ function AnomaliesList({
             className='anomalies-pagination mx-auto'
             inverted
             defaultActivePage={1}
-            totalPages={anomalies.length / 2}
+            totalPages={anomalies.length / 5}
             onPageChange={(e, { activePage }) => pagination.jump(Number(activePage))}
           />
         </div>
