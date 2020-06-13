@@ -1,8 +1,36 @@
 .home-container {
-    margin: 0 auto !important;
-    margin-top: 50% !important;
     color: red;
     background: #000;
+    width: 100% !important;
+    margin-left: -10% !important;
+    padding-top: 5%;
+    height: 100%;
+}
+
+.home-container-description{
+  text-align: center !important;
+    font-size: 2.4em !important;
+}
+
+.home-button {
+    margin: 0 auto !important;
+    width: auto !important;
+}
+
+.st-text {
+    background-color: rgb(29, 28, 28) !important;
+    font-family: 'ITC Benguiat W01';
+    font-weight: 800;
+    color: #1c0502;
+    text-shadow: -0.03rem -0.02rem 0.3px white,
+      0.04rem -0.03rem 0.1px white,
+      -0.04rem 0.03rem 0.1px white,
+      0.04rem 0.03rem 0.1px white,
+      0 0 5px white,
+      0 0 5px whitesmoke;
+    letter-spacing: 3px;
+}
+.st {
     text-align: center;
     text-transform: uppercase;
     font-size: 8rem;
@@ -18,14 +46,14 @@
     letter-spacing: -2px;
 }
 
-  .home-container p {
+  .st p {
     display: inline-block;
     margin: 0;
   }
   
  
   
-  .home-container-bound-full {
+  .st-bound-full {
     width: 100%;
     margin: auto;
     margin-bottom: -1.2rem;
@@ -33,25 +61,25 @@
     margin-left: 5px;
   }
   
-  .home-container-bound-mini {
+  .st-bound-mini {
     margin-top: 0.5rem;
   }
   
-  .home-container-bound-left {
+  .st-bound-left {
     float: left;
     width: 99px;
     position: relative;
     left: 5px;
   }
   
-  .home-container-bound-right {
+  .st-bound-right {
     float: right;
     width: 103px;
     left: 0.3rem;
     position: relative;
   }
   
-  .home-container-bottom {
+  .st-bottom {
     clear: both;
     top: -3.75rem;
     position: relative;
@@ -59,47 +87,47 @@
     letter-spacing: 2px;
   }
   
-  .home-container-drop {
+  .st-drop {
     line-height: 0;
     position: relative;
     top: 1.55rem;
   }
   
-  .home-container-home-containerranger-s {
+  .st-stranger-s {
     font-size: 10.5rem;
     letter-spacing: -8px;
   }
   
-  .home-container-home-containerranger-t {
+  .st-stranger-t {
     letter-spacing: 0;
   }
   
-  .home-container-home-containerranger-n {
+  .st-stranger-n {
     letter-spacing: -5px;
   }
   
-  .home-container-home-containerranger-g {
+  .st-stranger-g {
     letter-spacing: 0;
   }
   
-  .home-container-home-containerranger-r-2 {
+  .st-stranger-r-2 {
     font-size: 10.5rem;
     right: 0.2rem;
   }
   
-  .home-container-things-t {
+  .st-things-t {
     font-size: 104%;
     letter-spacing: 2px;
   }
   
-  .home-container-things-n {
+  .st-things-n {
     letter-spacing: -5px;
   }
   
-  .home-container-things-g {
+  .st-things-g {
     letter-spacing: -3px;
   }
 
-  .home-container-things-x {
+  .st-things-x {
     letter-spacing: -25px;
   }
