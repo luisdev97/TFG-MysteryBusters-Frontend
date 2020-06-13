@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AnomalyDetail.css";
 import ReactMapboxGl, { Layer, Feature, Image, Popup } from "react-mapbox-gl";
 import { IncidentsMapProps } from "../../props/Anomalies";
@@ -21,6 +21,10 @@ function IncidentsMap({ point, anomaly_id }: IncidentsMapProps) {
   const [popupProps, setPopupPros] = useState<any>({
     visible: false, location: {}
   });
+
+  useEffect(() => {
+    setCenter([lng, lat]);
+  },[point]);
 
   return (
     <AuthContext.Consumer>
