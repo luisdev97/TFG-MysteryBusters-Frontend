@@ -17,7 +17,7 @@ import {
 import { Link } from "react-router-dom";
 
 
-function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
+function AnomalyItem({ anomaly, update, remove, me }: AnomalyItemProps) {
   const { id, description, type, creator } = anomaly;
   const [editMode, setEditMode] = useState<boolean>(false);
   const [data, setData] = useState({ description, type });
@@ -65,8 +65,8 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
                     onChange={e => handleChange(e)}
                   />
                 ) : (
-                  description
-                )
+                    description
+                  )
               }
               className="mt-1 ml-4 a-item-header"
             />
@@ -75,20 +75,24 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
               content={creator && `${creator.firstname} ${creator.lastname}`}
               className="ml-4 a-item-meta"
             />
-            <Icon
-              className="float-right"
-              name="edit outline"
-              size="big"
-              color={editMode ? "black" : "grey"}
-              onClick={(e: any) => handleChangeMode(e)}
-            />
-            <Icon
-              className="float-right"
-              name="trash alternate"
-              link
-              size="big"
-              onClick={(e: any) => remove(e, id)}
-            />
+            {(me?.id === creator.id || me?.role === "admin") &&
+              <>
+                <Icon
+                  className="float-right"
+                  name="edit outline"
+                  size="big"
+                  color={editMode ? "black" : "grey"}
+                  onClick={(e: any) => handleChangeMode(e)}
+                />
+                <Icon
+                  className="float-right"
+                  name="trash alternate"
+                  link
+                  size="big"
+                  onClick={(e: any) => remove(e, id)}
+                />
+              </>}
+
 
             <Segment
               content={
@@ -106,8 +110,8 @@ function AnomalyItem({ anomaly, update, remove }: AnomalyItemProps) {
                     ))}
                   </select>
                 ) : (
-                  type.toLocaleUpperCase()
-                )
+                    type.toLocaleUpperCase()
+                  )
               }
               size={"small"}
               inverted

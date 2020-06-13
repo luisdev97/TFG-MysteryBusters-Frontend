@@ -5,6 +5,7 @@ export const REQUIRED_FIELDS = gql`
     fragment requiredFields on Anomaly {
         id
         creator {
+            id
             firstname 
             lastname
         }

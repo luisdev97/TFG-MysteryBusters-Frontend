@@ -64,7 +64,7 @@ function AnomaliesList({
           </div>
 
           {pagination.currentData().map(a => (
-            <AnomalyItem key={a.id} anomaly={a} update={update} remove={remove} />
+            <AnomalyItem key={a.id} anomaly={a} update={update} remove={remove} me={me} />
           ))}
         </List>
       )}
