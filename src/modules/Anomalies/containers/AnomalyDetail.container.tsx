@@ -10,7 +10,7 @@ function AnomalyDetailContainer() {
   const { id } = useParams();
   const [anomaly, setAnomaly] = useState<Anomaly>({} as Anomaly);
   const [deleteIncident] = useMutation(DELETE_INCIDENT_MUTATION);
-  const { error, loading, data } = useQuery(GET_ONE_ANOMALY_QUERY, {
+  const { error, loading, data, refetch } = useQuery(GET_ONE_ANOMALY_QUERY, {
     variables: {
       id: Number(id)
     }
@@ -34,6 +34,7 @@ function AnomalyDetailContainer() {
     if (!loading && data) {
       setAnomaly(data.getAnomaly);
     }
+    refetch();
   }, [loading, data]);
 
   if (loading) return <p>Loading :</p>;

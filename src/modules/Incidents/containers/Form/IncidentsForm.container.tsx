@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import {
   CREATE_INCIDENT_MUTATION,
@@ -13,29 +13,10 @@ import { useHistory, useParams } from "react-router";
 import IncidentsForm from "../../components/Form/IncidentsForm";
 import { GET_ONE_INCIDENT_QUERY } from "../../graphql/queries/index";
 
-const initialState: Incident = {
-  id: 4,
-  belong_to_anomaly: 2,
-  title: "Este sera el título del incidente",
-  description:
-    "7p8)hNmt7NPY7cTr2!hD(e}e[aV[A3$[L&gzqxcCFR8h5{k;y+aMyzi/=#g%Q4n)mf+d_Zea+XAV!GtAy983Gm#Rmymt@M+5t@BL;rr)K8:F)j:;hxiwSn_XL:fP;E5TR]YNff2S)/HiecBxVS7$ic]vV%6x24#EDY#QL,?j2f(9)a4N5a7;#QRP)PqtYn5wP(b@!u8&yn9vBSN?{LqFCw7-X8[]x;?$77nnNcrp!bE",
-  img:
-    "https://i.pinimg.com/originals/5c/f0/b3/5cf0b3d5ff8328687e751a7f9dffde06.gif",
-  location: {
-    lat: 42,
-    lng: 14,
-    place: "Benito Villamarin, Seviolla"
-  },
-  date: "09/05/2020",
-  time: "12:23",
-  maxResearchers: 3,
-  resolved: false
-};
-
 export default function IncidentsFormContainer() {
   const [createIncident] = useMutation(CREATE_INCIDENT_MUTATION);
   const [updateIncident] = useMutation(UPDATE_INCIDENT_MUTATION);
-  const [incident, setIncident] = useState<Incident>(initialState);
+  //const [incident, setIncident] = useState<Incident>({ } as Incident);
   const { id } = useParams();
   const [getIncident, { error, data, loading }] = useLazyQuery(
     GET_ONE_INCIDENT_QUERY,
@@ -47,13 +28,13 @@ export default function IncidentsFormContainer() {
   );
 
   useEffect(() => {
-    
+
     if (id && !data) {
       getIncident();
     }
     if (!loading && data) {
       console.log("llega la request")
-      setIncident(data.getIncident);
+      //setIncident(data.getIncident);
     }
   }, [data]);
 
@@ -84,28 +65,35 @@ export default function IncidentsFormContainer() {
   function update(id: number, input: any) {
     console.log(anomaly_id)
     return;
-      if(input.maxResearchers)
-      input.maxResearchers = Number(incident.maxResearchers);
-      console.log(input);
-      updateIncident({
-        variables: {
-          id,
-          input
-        }
+    if (input.maxResearchers)
+      input.maxResearchers = Number(input.maxResearchers);
+    console.log(input);
+    updateIncident({
+      variables: {
+        id,
+        input
+      }
+    })
+      .then(data => {
+        history.push(`/anomalies/${anomaly_id}`);
       })
-        .then(data => {
-          history.push(`/anomalies/${anomaly_id}`);
-        })
-        .then(error => console.log(error));
-    
+      .then(error => console.log(error));
+
   }
 
   if (loading) return <p>Loading</p>;
-  if (error) return <p>Error</p>;
-  return (
-    <IncidentsForm
-      initialState={id ? incident : ({} as Incident)}
-      mutation={id ? update : create}
-    />
-  );
+  if (id) {
+    if (data?.getIncident)
+      return <IncidentsForm initialState={data.getIncident} mutation = { update}/>
+    else
+      return <p>Loading...</p>
+}
+
+  else
+return (
+  <IncidentsForm
+    initialState={{} as Incident}
+    mutation={create}
+  />
+);
 }
