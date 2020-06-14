@@ -31,6 +31,9 @@ export const UPDATE_INCIDENT_MUTATION = gql`
       id
       title
       description
+      belong_to_anomaly {
+        id
+      }
     }
   }
 `

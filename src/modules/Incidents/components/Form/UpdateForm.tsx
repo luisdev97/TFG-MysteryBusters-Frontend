@@ -60,27 +60,31 @@ export default function UpdateForm({
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-info w-75 mx-auto mt-5"
+      className="incidents-form w-75 mx-auto group"
     >
-      <Field width={7} className="mx-auto">
+      <Field width={13} className="mx-auto">
         {checkError("title")}
         <input
+          type="text"
           name="title"
+          placeholder="Título"
           ref={register}
           onChange={e => handlFormChanges(e)}
         />
       </Field>
 
-      <Field width={7}>
+      <Field width={16}>
         {checkError("description")}
         <input
+          placeholder="Descripción del incidente"
+          type="textarea"
           name="description"
           ref={register}
           onChange={e => handlFormChanges(e)}
         />
       </Field>
 
-      <Field width={7}>
+      <Field width={8}>
         {checkError("img")}
 
         <input
@@ -91,9 +95,11 @@ export default function UpdateForm({
           onChange={e => handlFormChanges(e)}
         />
       </Field>
-      <Field width={7}>
+      
+      <Field width={5}>
         {checkError("maxResearchers")}
         <input
+          placeholder="Plazas"
           type="number"
           name="maxResearchers"
           ref={register}

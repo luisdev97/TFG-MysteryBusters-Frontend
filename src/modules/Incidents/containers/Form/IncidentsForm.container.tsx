@@ -33,7 +33,6 @@ export default function IncidentsFormContainer() {
       getIncident();
     }
     if (!loading && data) {
-      console.log("llega la request")
       //setIncident(data.getIncident);
     }
   }, [data]);
@@ -56,15 +55,13 @@ export default function IncidentsFormContainer() {
       variables: { input: incident }
     })
       .then(data => {
-        console.log(data);
         history.push(`/anomalies/${anomaly_id}`);
       })
       .then(error => console.log(error));
   }
 
   function update(id: number, input: any) {
-    console.log(anomaly_id)
-    return;
+    console.log(anomaly_id);
     if (input.maxResearchers)
       input.maxResearchers = Number(input.maxResearchers);
     console.log(input);
@@ -75,6 +72,7 @@ export default function IncidentsFormContainer() {
       }
     })
       .then(data => {
+        const anomaly_id = data.data.updateIncident.belong_to_anomaly.id;
         history.push(`/anomalies/${anomaly_id}`);
       })
       .then(error => console.log(error));
