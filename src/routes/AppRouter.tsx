@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import routes from "./routes";
 import { AuthContext } from "../modules/Context/AuthContext";
 import { Researcher } from "../modules/Researchers/models/entities/Researcher";
@@ -7,11 +7,12 @@ import { Researcher } from "../modules/Researchers/models/entities/Researcher";
 function AppRouter() {
   const routeComponents = (me: Researcher | null) => routes.map(({ path, component, authRequired }, key) => {
     return me
-            ? <Route exact path={path} component={component} key={key} />
-            : authRequired
-              ? null
-              : <Route exact path={path} component={component} key={key} />
+    ? <Route exact path={path} component={component} key={key} />
+    : authRequired
+      ? <Redirect to="/"/>
+      : <Route exact path={path} component={component} key={key} />
   })
+
   return (
 
     <AuthContext.Consumer>
